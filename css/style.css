@@ -1,0 +1,126 @@
+#banner{
+    width: 123px;
+}
+
+#textoinvisiblenav{
+    color: transparent;
+}
+
+#ISForm{
+    background-color: #82c577;
+    width: 60%;
+    padding: 15px;
+}
+
+h1{
+    text-align: center;
+}
+
+label{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+footer{
+    text-align: center;
+    padding: 20px;
+}
+
+#logo{
+    margin: 0px;
+    padding: 0px;
+    margin-left: 20px;
+}
+
+nav{
+    font-weight: bold;
+    color: #000;
+}
+
+/*ventas*/
+#VForm{
+    background-color: #82c577;
+    width: 90%;
+    padding: 15px;
+}
+
+#PForm{
+    background-color: #82c577;
+    width: 90%;
+    padding: 15px;
+}
+
+#desc{
+    width: 20%;
+}
+
+#des{
+    width: 30%;
+}
+
+#canti{
+    width: 10%;
+}
+
+#inputcant{
+    width: 100%;
+}
+
+#nompro{
+    width: 29%;
+    border-color: transparent;
+    padding: 6px;
+}
+#telpro{
+    width: 19%;
+    border-color: transparent;
+    padding: 6px;
+
+}
+#dirpro{
+    width: 49%;
+    border-color: transparent;
+    padding: 6px;
+
+}
+#corpro{
+    width: 49%;
+    border-color: transparent;
+    padding: 6px;
+
+}
+#rfcpro{
+    width: 49%;
+    border-color: transparent;
+    padding: 6px;
+}
+#propro{
+    width: 49%;
+    border-color: transparent;
+    padding: 6px;
+}
+#emppro{
+    width: 49%;
+    border-color: transparent;
+    padding: 6px;
+}
+#BPForm{
+    background-color: #82c577;
+    width: 90%;
+    padding: 15px;
+}
+#buspro{
+    width: 49%;
+    border-color: transparent;
+    padding: 6px;
+}
+#inv{
+    background-color: #82c577;
+    padding: 15px;
+}
+
+.botonsubmit{
+    color: blue;
+    font-weight: bold;
+    
+}
