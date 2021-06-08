@@ -1,13 +1,34 @@
 <?php
     session_start();
-  if(!$_SESSION["usuario_valido"]){
+
+    $usuario = $_SESSION["usuario_valido"];
+
+    $conexion=mysqli_connect("localhost","root","","soltech");
+
+    $instruccion= "select id_rol from vendedores where nameuser='$usuario'";
+
+    $consulta = mysqli_query($conexion,$instruccion) or die
+                ("Fallo en la consulta...");
+
+        while($row=mysqli_fetch_array($consulta)){
+            $rol = $row['id_rol'];
+        }
+    
+    if(!$_SESSION["usuario_valido"]){
 ?>
-    <script>
-            alert('Inicia sesion para acceder a este sitio');
-            window.location= '../login.php';
-    </script>";
+        <script>
+                alert('Inicia sesion para acceder a este sitio');
+                window.location= '../login.php';
+        </script>";
 <?php
-    exit();
+        exit();
+    } else if ($rol != 1){
+?>
+        <script>
+                alert('Tu eres usuario, no puedes acceder al área de administradores');
+                window.location= '../usuario/usuario.php';
+        </script>";
+<?php
     }
 ?>
 
