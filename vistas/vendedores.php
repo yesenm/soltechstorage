@@ -96,9 +96,8 @@
 				<input type="text" class="form-control" placeholder="Ingresa el nombre de usuario (Con este podrá iniciar sesión)" name="nameuser" id="nameuser" value="<?php echo $nameuser;?>" /><br/>
 				<label>Password:</label>
 				<input type="password" class="form-control" placeholder="Escribe la contraseña del usuario" name="contrasena" id="contrasena" value="<?php echo $pass_cifrado;?>" /><br/>
-                <label>Rol:</label>
+                <label>Elige un rol para el usuario:</label>
                 <select class="form-control" name="id_rol" id="id_rol">
-                    <option>Elige el rol del usuario</option>
                     <option value="1" <?php if($id_rol == "1") echo "selected" ?> >Administrador</option>
                     <option value="2" <?php if($id_rol == "2") echo "selected" ?> >Vendedor</option>
                 </select><br>
@@ -120,6 +119,8 @@
         <h4>Vendedores</h4>
     </div>
 
+
+
         <form id="BPForm" class="rounded-3">
             <div class="table-responsive">
                 <table class="table">
@@ -137,19 +138,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Ma</td>
-                            <td>Ma</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>hola</td>
-                            <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
+                            <?php
+                                //Consulta para rellenar la tabla
+                                $conexion = mysqli_connect("localhost","root","","soltech");
+                                if(mysqli_connect_errno()){
+                                    echo "Fallo en la conexión. ".mysqli_connect_error();
+                                }
+
+                                $usuarios= "SELECT * FROM vendedores";
+                                $resultado= $conexion->query($usuarios);
+                                
+                                    while($row = $resultado->fetch_assoc()){?>
+                                        <tr>
+                                        <th> <?php echo $row['id']; ?></th>
+                                        <td> <?php echo $row['nombrev']; ?></td>
+                                        <td> <?php echo $row['telefonov']; ?></td>
+                                        <td> <?php echo $row['direccionv']; ?></td>
+                                        <td> <?php echo $row['correov']; ?></td>
+                                        <td> <?php echo $row['rfcv']; ?></td>
+                                        <td> <?php echo $row['nameuser']; ?></td>
+                                        <td> <?php echo $row['contrasena']; ?></td>
+                                        <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                        </tr>
+                                    <?php } mysqli_free_result($resultado); ?>
                     </tbody>
                 </table>
             </div>
