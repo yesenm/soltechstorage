@@ -16,7 +16,7 @@
 </head>
 <body>
 <!--Inicia Nabvar-->
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #7ad2ae;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #7ad2ae;">
         
         <div class="container-fluid">
             <a href=""><img src="../img/logooooo.png" id="logo"></a>
@@ -72,26 +72,29 @@
     <!--Inicia Formulario-->
     <div class="container">
         <center>
-            <h4>Agrega un nuevo cliente a crédito</h4>
-            <br>
-            
-            <form id="PForm" class="rounded-3">
+        <h4>Agrega un nuevo cliente a crédito</h4>
+        <?php 
+            include("../includes/proclientescr.php");
+        ?>
+        <br>
+            <form id="PForm" class="rounded-3" method="POST"
+			action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre" class="rounded-3">
+                <input type="text" class="form-control" placeholder="Nombre" class="rounded-3" name="nombrecr" value="<?php echo $nombrecr;?>">
                 <label>Teléfono</label>
-                <input type="text" class="form-control" placeholder="Teléfono" class="rounded-3">
+                <input type="text" class="form-control" placeholder="Teléfono" class="rounded-3" name="telefonocr" value="<?php echo $telefonocr;?>">
                 <label>Dirección</label><br>
-                <input type="text" class="form-control" placeholder="Dirección" class="rounded-3">
+                <input type="text" class="form-control" placeholder="Dirección" class="rounded-3" name="direccioncr" value="<?php echo $direccioncr;?>">
                 <label>Correo</label>
-                <input type="text" class="form-control" placeholder="Correo" class="rounded-3">
+                <input type="text" class="form-control" placeholder="Correo" class="rounded-3" name="correocr" value="<?php echo $correocr;?>">
                 <label>RFC</label><br>
-                <input type="text" class="form-control" placeholder="RFC" class="rounded-3">
+                <input type="text" class="form-control" placeholder="RFC" class="rounded-3" name="rfccr" value="<?php echo $rfccr;?>">
                 <label>Cantidad de crédito</label>
-                <input type="text" class="form-control" placeholder="Cantidad de crédito" class="rounded-3">
+                <input type="text" class="form-control" placeholder="Cantidad de crédito" class="rounded-3" name="cantidadcr" value="<?php echo $cantidadcr;?>">
                 <label>Fecha límite</label><br>
-                <input type="date" class="form-control" class="rounded-3">
+                <input type="date" class="form-control" class="rounded-3" name="fechalicr" value="<?php echo $fechalicr;?>">
                 <br>
-                <button type="button" class="btn btn-primary">Agregar cliente a crédito</button>
+                <button type="submit" class="btn btn-primary" name="registrar" value="Registrar datos">Agregar cliente a crédito</button>
             </form>
             
             <div class="mb-3"><br>
@@ -124,21 +127,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Ma</td>
-                                <td>Ma</td>
-                                <td>Ma</td>
-                                <td>Ma</td>
-                                <td>Otto</td>
-                                <td>Otto</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>hola</td>
-                                <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
+                        <?php
+                                //Conexion con la base de datos
+                                $conexion = mysqli_connect("localhost","root","","soltech");
+                                if(mysqli_connect_errno()){
+                                    echo "Fallo en la conexión. ".mysqli_connect_error();
+                                }
+                                //Consulta a la base de datos
+                                $clientescr= "SELECT * FROM clientescr";
+                                $resultado= $conexion->query($clientescr);
+                                    //Impresión de filas
+                                    while($row = $resultado->fetch_assoc()){?>
+                                        <tr>
+                                        <th> <?php echo $row['id']; ?></th>
+                                        <td> <?php echo $row['nombrecr']; ?></td>
+                                        <td> <?php echo $row['telefonocr']; ?></td>
+                                        <td> <?php echo $row['direccioncr']; ?></td>
+                                        <td> <?php echo $row['correocr']; ?></td>
+                                        <td> <?php echo $row['rfccr']; ?></td>
+                                        <td>$ <?php echo $row['cantidadcr']; ?></td>
+                                        <td>$ <?php echo $row['restantecr']; ?></td>
+                                        <td> <?php echo $row['fechaprcr']; ?></td>
+                                        <td> <?php echo $row['fechalicr']; ?></td>
+                                        <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                        </tr>
+                                    <?php } mysqli_free_result($resultado); ?>
                         </tbody>
                     </table>
                 </div>

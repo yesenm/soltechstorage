@@ -96,6 +96,9 @@
             <div class="mb-3"><br>
                 <h4>Gastos</h4>
             </div>
+
+
+
             <!--Inicia tabla-->
             <form id="BPForm" class="rounded-3">
                 <div class="table-responsive">
@@ -112,17 +115,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
+                        <?php
+                                //Conexion con la base de datos
+                                $conexion = mysqli_connect("localhost","root","","soltech");
+                                if(mysqli_connect_errno()){
+                                    echo "Fallo en la conexión. ".mysqli_connect_error();
+                                }
+                                //Consulta a la base de datos
+                                $gastos= "SELECT * FROM gastos";
+                                $resultado= $conexion->query($gastos);
+                                    //Impresión de filas
+                                    while($row = $resultado->fetch_assoc()){?>
+                                        <tr>
+                                        <th> <?php echo $row['id']; ?></th>
+                                        <td> <?php echo $row['empleado']; ?></td>
+                                        <td> <?php echo $row['rubro']; ?></td>
+                                        <td> <?php echo $row['fecha']; ?></td>
+                                        <td> <?php echo $row['proyecto']; ?></td>
+                                        <td>$ <?php echo $row['cantidad']; ?></td>
+                                        <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                        </tr>
+                                    <?php } mysqli_free_result($resultado); ?>
                         </tbody>
                     </table>
                 </div>

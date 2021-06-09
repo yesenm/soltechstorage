@@ -69,33 +69,36 @@
     
     <!--Inicia Formulario Gastos-Form -->
     <div class="container col-6 lg-6 md-5">
-        <center>
-            <br>
-            <h4>Agrega un nuevo gasto</h4>
-            <br>
-            <form id="VForm" class="rounded-3">
+        <center><br>
+        <h4>Agrega un nuevo gasto</h4>
+            <?php 
+            include("../includes/progastos.php");
+            ?>
+        <br>
+            <form id="VForm" class="rounded-3" method="POST"
+			action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Empleado</label>
-                    <input type="text" class="form-control" placeholder="Ingresa el nombre del empleado">
+                    <label>Empleado</label>
+                    <input type="text" class="form-control" name="empleado" value="<?php echo $empleado; ?>" placeholder="Ingresa el nombre del empleado">
                     
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Rubro</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Añade el rubro del empleado">
+                        <l>Rubro</label>
+                        <input type="text" class="form-control" name="rubro" value="<?php echo $rubro; ?>" placeholder="Añade el rubro del empleado">
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Fecha</label>
-                        <input type="date" class="form-control" id="formGroupExampleInput" placeholder="Ingresa la fecha del gasto">
+                        <l>Fecha</label>
+                        <input type="date" class="form-control" name="fecha" value="<?php echo $fecha; ?>" placeholder="Ingresa la fecha del gasto">
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Proyecto</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingresa el nombre del proyecto">
+                        <l>Proyecto</label>
+                        <input type="text" class="form-control" name="proyecto" value="<?php echo $proyecto; ?>" placeholder="Ingresa el nombre del proyecto">
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Concepto cantidad</label>
-                        <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Ingresa la cantidad gastada">
+                        <l>Concepto cantidad</label>
+                        <input type="number" class="form-control" name="cantidad" value="<?php echo $cantidad; ?>" placeholder="Ingresa la cantidad gastada">
                     </div>
                     <center>
-                        <a href="gastos.php"><button type="button" class="btn btn-primary">Agregar gasto</button></a>
+                        <button type="submit" class="btn btn-primary" name="agregargasto">Agregar gasto</button>
                     </center>
                 </div>
             </form>

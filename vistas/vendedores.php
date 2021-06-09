@@ -139,15 +139,17 @@
                     </thead>
                     <tbody>
                             <?php
-                                //Consulta para rellenar la tabla
+                                //Conexión con la base de datos
                                 $conexion = mysqli_connect("localhost","root","","soltech");
                                 if(mysqli_connect_errno()){
                                     echo "Fallo en la conexión. ".mysqli_connect_error();
                                 }
 
+                                //Consulta a la base de datos
                                 $usuarios= "SELECT * FROM vendedores";
                                 $resultado= $conexion->query($usuarios);
-                                
+
+                                //Impresión de filas
                                     while($row = $resultado->fetch_assoc()){?>
                                         <tr>
                                         <th> <?php echo $row['id']; ?></th>
@@ -182,4 +184,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </body>
 </html>
-
