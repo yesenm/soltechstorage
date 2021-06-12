@@ -1,4 +1,32 @@
-<!doctype html>
+<?php
+
+    //Creacion de consulta para llenar los campos correctamente
+    $consulta = ConsultarProveedor($_GET['id']);
+
+    function ConsultarProveedor($id_prov){
+
+        //Conexión con la base de datos
+    $conexion = mysqli_connect("localhost","root","","soltech");
+    if(mysqli_connect_errno()){
+        echo "Fallo en la conexión. ".mysqli_connect_error();
+    }
+        $sentencia="SELECT *FROM proveedores WHERE id='".$id_prov."'";
+        $resultado= $conexion->query($sentencia);
+        $row=mysqli_fetch_assoc($resultado);
+        return [
+            $row['id'],
+            $row['nombrep'],
+            $row['telefonop'],
+            $row['direccionp'],
+            $row['correop'],
+            $row['rfcp'],
+            $row['productosp'],
+            $row['empresap']
+        ];
+    }
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -6,7 +34,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Formulario de gastos</title>
+    <title>Edicion de proveedores</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
@@ -15,8 +43,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!--Inicia Nabvar-->
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #7ad2ae;">
+
+     <!--Inicia Nabvar-->
+     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #7ad2ae;">
         
         <div class="container-fluid">
             <a href=""><img src="../img/logooooo.png" id="logo"></a>
@@ -66,56 +95,45 @@
         </div>
     </nav>
     <!--Finaliza Nabvar-->
-    
-    <!--Inicia Formulario Gastos-Form -->
-    <div class="container col-6 lg-6 md-5">
-        <center><br>
-        <h4>Agrega un nuevo gasto</h4>
-            <?php 
-            include("../includes/progastos.php");
-            ?>
-        <br>
-            <form id="VForm" class="rounded-3" method="POST"
-			action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <div class="form-group">
-                    <label>Empleado</label>
-                    <input type="text" class="form-control" name="empleado" value="<?php echo $empleado; ?>" placeholder="Ingresa el nombre del empleado">
-                    
-                    <div class="form-group">
-                        <label>Rubro</label>
-                        <input type="text" class="form-control" name="rubro" value="<?php echo $rubro; ?>" placeholder="Añade el rubro del empleado">
-                    </div>
-                    <div class="form-group">
-                        <label>Fecha</label>
-                        <input type="date" class="form-control" name="fecha" value="<?php echo $fecha; ?>" placeholder="Ingresa la fecha del gasto">
-                    </div>
-                    <div class="form-group">
-                        <label>Proyecto</label>
-                        <input type="text" class="form-control" name="proyecto" value="<?php echo $proyecto; ?>" placeholder="Ingresa el nombre del proyecto">
-                    </div>
-                    <div class="form-group">
-                        <label>Concepto cantidad</label>
-                        <input type="number" class="form-control" name="cantidad" value="<?php echo $cantidad; ?>" placeholder="Ingresa la cantidad gastada">
-                    </div>
-                    <center>
-                        <button type="submit" class="btn btn-primary" name="agregargasto">Agregar gasto</button>
+<div class="container">
+    <center><br>
+    <h4>Edita la información del proveedor</h4>
+        <?php
+            include("../includes/mod_proveedores.php");
+        ?>
+        
+            <br>
 
-                        <a href="gastos.php"><button type="button" class="btn btn-warning">Ir a gastos</button></a>
-                    </center>
-                </div>
-            </form>
-        </div>
-    </center>
-    <!--Finaliza Formulario-->
-    
-    <!--Inicia Footer-->
+    <form id="PForm" class="rounded-3" method="POST"
+		action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <fieldset>
+                <input type="hidden" name="id" id="update_id" value="<?php echo $_GET['id'];?>">
+                <label>Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre" name="nombrep" id="nombrep" value="<?php echo $consulta[1];?>" class="rounded-3"/><br>
+                <label>Teléfono</label>
+                <input type="text" class="form-control" placeholder="Teléfono" name="telefonop" id="telefonop" value="<?php echo $consulta[2];?>" class="rounded-3"/><br>
+                <label>Dirección</label>
+                <input type="text" class="form-control" placeholder="Dirección" name="direccionp" id="direccionp" value="<?php echo $consulta[3];?>" class="rounded-3"/><br>
+                <label>Correo</label>
+                <input type="text" class="form-control" placeholder="Correo" name="correop" id="correop" value="<?php echo $consulta[4];?>" class="rounded-3"/><br>
+                <label>RFC</label>
+                <input type="text" class="form-control" placeholder="RFC" name="rfcp" id="rfcp" value="<?php echo $consulta[5];?>" class="rounded-3"/><br>
+                <label>Productos</label>
+                <input type="text" class="form-control" placeholder="Productos proveídos" name="productosp" id="productosp" value="<?php echo $consulta[6];?>" class="rounded-3"/><br>
+                <label>Empresa</label>
+                <input type="text" class="form-control" placeholder="Empresa" name="empresap" id="empresap" value="<?php echo $consulta[7];?>" class="rounded-3"/><br>
+                <button type="submit" class="btn btn-primary" name="editarpro" value="editarpro">Editar proveedor</button>
+            </fieldset>
+    </form>
+</div>
+</center>
+            
+            <!--Inicia Footer-->
     <br><br>
     <footer style="background-color: #7ad2ae;">
         <h3>© Todos los derechos reservados</h3>
     </footer>
     <!--Finaliza Footer-->
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
 </body>
 </html>

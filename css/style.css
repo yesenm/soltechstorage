@@ -124,3 +124,9 @@ nav{
     font-weight: bold;
     
 }
+
+#GForm{
+    background-color: #82c577;
+    width: 60%;
+    padding: 15px;
+}

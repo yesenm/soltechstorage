@@ -73,21 +73,24 @@
     <div class="container">
         <center>
             <h4>Agrega un nuevo cliente potencial</h4>
+            <?php 
+                include("../includes/proclientespo.php");
+            ?>
             <br>
-            
-            <form id="PForm" class="rounded-3">
+            <form id="PForm" class="rounded-3" method="POST"
+			action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre" class="rounded-3">
+                <input id="nombrepo" name="nombrepo" type="text" class="form-control" placeholder="Nombre" class="rounded-3" <?php echo $nombrepo; ?>>
                 <label>Teléfono</label>
-                <input type="text" class="form-control" placeholder="Teléfono" class="rounded-3">
+                <input id="telefonopo" name="telefonopo" type="text" class="form-control" placeholder="Teléfono" class="rounded-3" <?php echo $telefonopo; ?>>
                 <label>Dirección</label>
-                <input type="text" class="form-control" placeholder="Dirección" class="rounded-3">
+                <input id="direccionpo" name="direccionpo" type="text" class="form-control" placeholder="Dirección" class="rounded-3" <?php echo $direccionpo; ?>>
                 <label>Correo</label>
-                <input type="text" class="form-control" placeholder="Correo" class="rounded-3">
+                <input id="correopo" name="correopo" type="text" class="form-control" placeholder="Correo" class="rounded-3" <?php echo $correopo; ?>>
                 <label>RFC</label>
-                <input type="text" class="form-control" placeholder="RFC" class="rounded-3">
+                <input id="rfcpo" name="rfcpo" type="text" class="form-control" placeholder="RFC" class="rounded-3" <?php echo $rfcpo; ?>>
                 <br>
-                <button type="button" class="btn btn-primary">Agregar cliente potencial</button>
+                <button type="submit" class="btn btn-primary" name="Agregar">Agregar cliente potencial</button>
             </form>
             
             
@@ -122,18 +125,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Ma</td>
-                                <td>Ma</td>
-                                <td>Otto</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>hola</td>
-                                <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
+                            <?php
+                                //Conexión con la base de datos
+                                $conexion = mysqli_connect("localhost","root","","soltech");
+                                if(mysqli_connect_errno()){
+                                    echo "Fallo en la conexión. ".mysqli_connect_error();
+                                }
+
+                                //Consulta a la base de datos
+                                $usuarios= "SELECT * FROM clientespo";
+                                $resultado= $conexion->query($usuarios);
+
+                                //Impresión de filas
+                                    while($row = $resultado->fetch_assoc()){?>
+                                        <tr>
+                                        <th> <?php echo $row['id']; ?></th>
+                                        <td> <?php echo $row['nombrepo']; ?></td>
+                                        <td> <?php echo $row['telefonopo']; ?></td>
+                                        <td> <?php echo $row['direccionpo']; ?></td>
+                                        <td> <?php echo $row['correopo']; ?></td>
+                                        <td> <?php echo $row['rfcpo']; ?></td>
+                                        <td> <?php echo $row['cantidadpo']; ?></td>
+                                        <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                        </tr>
+                            <?php } mysqli_free_result($resultado); ?>
                         </tbody>
                     </table>
                 </div>

@@ -51,7 +51,7 @@
     }else{
         die("Error al crear tabla: " . $conexion->error);
     }*/
-
+    /*
     //Creación de tabla gastos
     $sql = "CREATE TABLE gastos(
         id INT(4) AUTO_INCREMENT PRIMARY KEY,
@@ -66,5 +66,42 @@
         echo "La tabla se creó correctamente...";
     }else{
         die("Error al crear tabla: " . $conexion->error);
+    }
+    */
+
+    /*
+    //Creación de la tabla proveedores
+    $sql = "CREATE TABLE proveedores(
+        id INT(4) AUTO_INCREMENT PRIMARY KEY,
+        nombrep VARCHAR(100) NOT NULL,
+        telefonop VARCHAR (14) NOT NULL,
+        direccionp VARCHAR (100) NOT NULL,
+        correop VARCHAR (100) NOT NULL,
+        rfcp VARCHAR (100) NOT NULL,
+        productosp VARCHAR (100) NOT NULL,
+        empresap VARCHAR (100) NOT NULL
+    )";
+
+    if($conexion->query($sql) === true){
+        echo "La tabla se creó correctamente...";
+    }else{
+        die("Error al crear tabla: " . $conexion->error);
+    }*/
+
+    //Creación de la tabla Clientes potenciales
+    $sql = "CREATE TABLE clientespo(
+        id INT(4) AUTO_INCREMENT PRIMARY KEY,
+        nombrepo VARCHAR(100) NOT NULL,
+        telefonopo VARCHAR (14) NOT NULL,
+        direccionpo VARCHAR (100) NOT NULL,
+        correopo VARCHAR (100) NOT NULL,
+        rfcpo VARCHAR (100) NOT NULL,
+        cantidadpo INT (11) NOT NULL
+    )";
+
+    if($conexion->query($sql) === true){
+        echo "LA TABLA SE CREÓ CORRECTAMENTE";
+    }else{
+        die("ERROR AL CREAR TABLA: " . $conexion->error);
     }
 ?>
