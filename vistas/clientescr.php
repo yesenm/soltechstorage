@@ -75,6 +75,32 @@
         <h4>Agrega un nuevo cliente a crédito</h4>
         <?php 
             include("../includes/proclientescr.php");
+
+            //Eliminacion de un registro
+            $servidor = "localhost";
+            $nombreusuario = "root";
+            $password = "";
+            $db = "soltech";
+        
+            $conect = new mysqli($servidor, $nombreusuario, $password, $db);
+        
+            if($conect->connect_error){
+                die("Conexión fallida: " . $conect->connect_error);
+            }
+            //metodo de eliminar
+            if(isset($_REQUEST['eliminar'])){
+                
+                $id = $_REQUEST['eliminar'];
+                $sql = "DELETE FROM clientescr WHERE id = $id";
+
+                if($conect->query($sql) === true){
+                    echo "<br><div class='alert alert-success' role='alert'>
+                            El registro se ha eliminado correctamente.
+                        </div>";
+                }else{
+                    die("Error al actualizar datos: " . $conect->error);
+                }
+            }
         ?>
         <br>
             <form id="PForm" class="rounded-3" method="POST"
@@ -149,8 +175,12 @@
                                         <td>$ <?php echo $row['restantecr']; ?></td>
                                         <td> <?php echo $row['fechaprcr']; ?></td>
                                         <td> <?php echo $row['fechalicr']; ?></td>
-                                        <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                        <td> <?php echo
+                                            "<a href='formclientcrmod.php?id=".$row['id']."'><button type='button' class='btn btn-warning'><i class='fas fa-edit'></i></button></a>" ?>
+                                            <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="clientescr.php">
+                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                        </td>
                                         </tr>
                                     <?php } mysqli_free_result($resultado); ?>
                         </tbody>

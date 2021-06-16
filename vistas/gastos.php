@@ -74,7 +74,36 @@
             <div class="mb-3"><br>
                 <h4>Buscar Gasto</h4>
             </div>
+
+            <?php
+
+                //Eliminacion de un registro
+                $servidor = "localhost";
+                $nombreusuario = "root";
+                $password = "";
+                $db = "soltech";
             
+                $conect = new mysqli($servidor, $nombreusuario, $password, $db);
+            
+                if($conect->connect_error){
+                    die("Conexión fallida: " . $conect->connect_error);
+                }
+                //metodo de eliminar
+                if(isset($_REQUEST['eliminar'])){
+                    
+                    $id = $_REQUEST['eliminar'];
+                    $sql = "DELETE FROM gastos WHERE id = $id";
+
+                    if($conect->query($sql) === true){
+                        echo "<br><div class='alert alert-success' role='alert'>
+                                El gasto se ha eliminado correctamente.
+                            </div>";
+                    }else{
+                        die("Error al actualizar datos: " . $conect->error);
+                    }
+                }
+            ?>
+
             <form id="BPForm" class="rounded-3">
                 <input id="buspro" type="search" placeholder="Buscar proveedor" aria-label="Search">
                 <button class="btn btn-success" type="submit">Buscar</button>
@@ -133,8 +162,12 @@
                                         <td> <?php echo $row['fecha']; ?></td>
                                         <td> <?php echo $row['proyecto']; ?></td>
                                         <td>$ <?php echo $row['cantidad']; ?></td>
-                                        <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                        <td> <?php echo
+                                            "<a href='formgasmod.php?id=".$row['id']."'><button type='button' class='btn btn-warning'><i class='fas fa-edit'></i></button></a>" ?>
+                                            <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="gastos.php">
+                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                        </td>
                                         </tr>
                                     <?php } mysqli_free_result($resultado); ?>
                         </tbody>

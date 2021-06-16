@@ -74,6 +74,32 @@
 
         <?php 
             include("../includes/provendedores.php");
+
+            //Eliminacion de un registro
+            $servidor = "localhost";
+            $nombreusuario = "root";
+            $password = "";
+            $db = "soltech";
+        
+            $conect = new mysqli($servidor, $nombreusuario, $password, $db);
+        
+            if($conect->connect_error){
+                die("Conexión fallida: " . $conect->connect_error);
+            }
+            //metodo de eliminar
+            if(isset($_REQUEST['eliminar'])){
+                
+                $id = $_REQUEST['eliminar'];
+                $sql = "DELETE FROM vendedores WHERE id = $id";
+
+                if($conect->query($sql) === true){
+                    echo "<br><div class='alert alert-success' role='alert'>
+                            El registro se ha eliminado correctamente.
+                        </div>";
+                }else{
+                    die("Error al actualizar datos: " . $conect->error);
+                }
+            }
         ?>
 
         <br>
@@ -133,7 +159,6 @@
                             <th scope="col">Correo</th>
                             <th scope="col">RFC</th>
                             <th scope="col">Usuario</th>
-                            <th scope="col">Contraseña</th>
                             <th scope="col">Opciones</th>
                         </tr>
                     </thead>
@@ -159,9 +184,12 @@
                                         <td> <?php echo $row['correov']; ?></td>
                                         <td> <?php echo $row['rfcv']; ?></td>
                                         <td> <?php echo $row['nameuser']; ?></td>
-                                        <td> <?php echo $row['contrasena']; ?></td>
-                                        <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                        <td> <?php echo
+                                            "<a href='formvenmod.php?id=".$row['id']."'><button type='button' class='btn btn-warning'><i class='fas fa-edit'></i></button></a>" ?>
+                                            <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="vendedores.php">
+                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                        </td>
                                         </tr>
                                     <?php } mysqli_free_result($resultado); ?>
                     </tbody>

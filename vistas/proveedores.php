@@ -75,8 +75,10 @@
             <h4>Agrega un nuevo proveedor</h4>
 
             <?php
+            //Insertar un registro
                 include("../includes/proproveedores.php");
 
+                //Eliminacion de un registro
             $servidor = "localhost";
             $nombreusuario = "root";
             $password = "";
