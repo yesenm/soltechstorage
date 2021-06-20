@@ -185,9 +185,11 @@
                                         <td> <?php echo $row['rfcv']; ?></td>
                                         <td> <?php echo $row['nameuser']; ?></td>
                                         <td> <?php echo
-                                            "<a href='formvenmod.php?id=".$row['id']."'><button type='button' class='btn btn-warning'><i class='fas fa-edit'></i></button></a>" ?>
+                                            "<a href='formvenmod.php?id=".$row['id']."'><button type='button' class='btn btn-warning'><i class='fas fa-edit'></i></button></a>";
+                                            echo "<a href='cambiarpassword.php?id=".$row['id']."'><button type='button' class='btn btn-info'><i class='fas fa-key'></i></button></a>";
+                                            ?>
                                             <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="vendedores.php">
-                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger eliminar"><i class="fas fa-trash"></i></button>
                                         </form>
                                         </td>
                                         </tr>
@@ -198,6 +200,22 @@
         </form>
 </div>
 </center>
+
+<script>
+    function confirmation (e){
+        if(confirm ("¿Estas seguro de eliminar este registro?")){
+            return true;
+        }else{
+            e.preventDefault();
+        }
+    }
+
+    let linkEliminar = document.querySelectorAll(".eliminar");
+
+    for(var i = 0; i < linkEliminar.length; i++){
+        linkEliminar[i].addEventListener('click', confirmation);
+    }
+</script>
 
 <!--Finaliza Formulario-->
 

@@ -174,7 +174,7 @@
                                         <td><?php echo
                                             "<a href='formclipomod.php?id=".$row['id']."'><button type='button' class='btn btn-warning'><i class='fas fa-edit'></i></button></a>" ?>
                                             <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="clientespo.php">
-                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger eliminar"><i class="fas fa-trash"></i></button>
                                         </form>
                                         </td>
                                         </tr>
@@ -185,7 +185,21 @@
             </form>
         </div>
     </center>
-    
+<script>
+    function confirmation (e){
+        if(confirm ("¿Estas seguro de eliminar este registro?")){
+            return true;
+        }else{
+            e.preventDefault();
+        }
+    }
+
+    let linkEliminar = document.querySelectorAll(".eliminar");
+
+    for(var i = 0; i < linkEliminar.length; i++){
+        linkEliminar[i].addEventListener('click', confirmation);
+    }
+</script>
     <!--Finaliza Formulario-->
     
     <!--Inicia Footer-->
