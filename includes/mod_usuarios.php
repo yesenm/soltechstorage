@@ -88,30 +88,43 @@
                     $rfc=$_REQUEST['rfcv'];
                     $nameuser=$_REQUEST['nameuser'];
                     $id_rol=$_REQUEST['id_rol'];
-              
-                    $cambios ="update vendedores set nombrev ='$nombre',telefonov='$telefono', direccionv='$direccion',
-                                correov='$correo', rfcv='$rfc', nameuser='$nameuser',
-                                id_rol='$id_rol' where id='$id'";
-    
-                if(mysqli_query($conexion,$cambios)){
-                    echo "<br><div class='alert alert-success' role='alert'>
-                        Los datos fueron actualizados correctamente.
-                        </div>";
-
-                        ?>
-                        <script>
-                            setTimeout(() => {
-                                window.location= "../vistas/vendedores.php";
-                            }, 3000);
-                        </script>
-                        <?php
-                } 
+            
+                    $conexion = mysqli_connect("localhost","root","","soltech");
                 
-                if(!mysqli_query($conexion,$cambios)){
-                    echo"Error".mysqli_error($conexion);
+                    if(mysqli_connect_errno()){
+                        echo "Fallo en la conexión. ".mysqli_connect_error();
+                    }
+                    
+                    $instruccion ="select nameuser from vendedores where nameuser ='$nameuser'";
+                    if(mysqli_num_rows(mysqli_query($conexion,$instruccion))<=0){
+                        $cambios ="UPDATE vendedores SET nombrev ='$nombre',telefonov='$telefono', direccionv='$direccion',
+                                    correov='$correo', rfcv='$rfc', nameuser='$nameuser',
+                                    id_rol='$id_rol' WHERE id='$id'";
+        
+                    if(mysqli_query($conexion,$cambios)){
+                        echo "<br><div class='alert alert-success' role='alert'>
+                            Los datos fueron actualizados correctamente.
+                            </div>";
+
+                            ?>
+                            <script>
+                                setTimeout(() => {
+                                    window.location= "../vistas/vendedores.php";
+                                }, 3000);
+                            </script>
+                            <?php
+                    } 
+                    
+                    if(!mysqli_query($conexion,$cambios)){
+                        echo"Error".mysqli_error($conexion);
+                    }
+                }else if(mysqli_num_rows(mysqli_query($conexion,$instruccion))>0){
+                    echo "<br><div class='alert alert-danger' role='alert'>
+                    Ya existe un usuario con este nombre.
+                    </div>";
                 }
+                 mysqli_close($conexion);
             }
-            mysqli_close($conexion);
         }
     }
 

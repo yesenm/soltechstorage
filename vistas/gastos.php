@@ -119,7 +119,7 @@
                     </div>
             </form><br>
                 <div class="btn-group" role="group">
-                    <button class="btn btn-success" type="button">Generar reporte en PDF</button>
+                    <a href="../includes/pdf/pdfgastos.php"><button class="btn btn-success" type="button">Generar reporte en PDF</button></a>
                     <a href="formgastos.php"><button class="btn btn-primary" type="button">Agregar un nuevo gasto</button></a>
                 </div>
             <div class="mb-3"><br>

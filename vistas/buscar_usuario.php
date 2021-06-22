@@ -64,12 +64,11 @@
     </div>
     </nav>
     <!--Finaliza Nabvar-->
-    
+    <br>
 
     <!--Inicia Formulario-->
     <div class="container">
         <center>
-
 
         <?php 
 
@@ -90,23 +89,34 @@
                 $id = $_REQUEST['eliminar'];
                 $sql = "DELETE FROM vendedores WHERE id = $id";
 
-                if($conect->query($sql) === true){
-                    echo "<br><div class='alert alert-success' role='alert'>
-                            El registro se ha eliminado correctamente.
-                        </div>";
+                if($conect->query($sql) === true){  
+                ?>
+                <script>
+                    alert('El registro se ha eliminado');
+                    window.location = "vendedores.php";
+                </script>
+                <?php
                 }else{
                     die("Error al actualizar datos: " . $conect->error);
                 }
             }
         ?>
-   <br>
+
+    <?php
+        $busqueda = strtolower( $_REQUEST['busqueda']);
+        if(empty($busqueda)){
+            header("location: vendedores.php");
+        }
+    ?>
+
     <form id="BPForm" class="rounded-3 form_search" action="buscar_usuario.php" method="get">
         <label>Registra un usuario:</label>
         <a href="ifusuario.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
-        <input id="buspro" type="text" name="busqueda" placeholder="Buscar usuario" aria-label="Search" class="rounded-3">
+        <input id="buspro" value="<?php echo $busqueda; ?>" type="text" name="busqueda" placeholder="Buscar usuario" aria-label="Search" class="rounded-3">
         <button class="btn btn-success btn_search" type="submit" value="Buscar"><i class="fas fa-search"></i></button>
+        <a href="vendedores.php"><button class="btn btn-warning" type="button"><i class="fas fa-book-open"></i></button></a>
     </form>
-    
+
     <div class="mb-3"><br>
         <h4>Usuarios</h4>
     </div>
@@ -135,12 +145,36 @@
                                     echo "Fallo en la conexión. ".mysqli_connect_error();
                                 }
 
+                                
                                 //Consulta a la base de datos
-                                $usuarios= "SELECT * FROM vendedores";
-                                $resultado= $conexion->query($usuarios);
+                                $sql_registe= ("SELECT * FROM vendedores
+                                                WHERE (id LIKE '%$busqueda%' OR
+                                                    nombrev LIKE '%$busqueda%' OR
+                                                    telefonov LIKE '%$busqueda%' OR
+                                                    direccionv LIKE '%$busqueda%' OR
+                                                    correov LIKE '%$busqueda%' OR
+                                                    rfcv LIKE '%$busqueda%' OR
+                                                    nameuser LIKE '%$busqueda%')");
+                                                                                
+                                
+                                $result_register = $conexion->query($sql_registe);
+                                
+                                $query = "SELECT u.id, u.nombrev, u.telefonov, u.direccionv, u.correov,
+                                            u.rfcv, u.nameuser FROM vendedores u 
+                                            INNER JOIN rol r ON u.id_rol = r.idol
+                                            WHERE (id LIKE '%$busqueda%' OR
+                                                u.nombrev LIKE '%$busqueda%' OR
+                                                u.telefonov LIKE '%$busqueda%' OR
+                                                u.direccionv LIKE '%$busqueda%' OR
+                                                u.correov LIKE '%$busqueda%' OR
+                                                u.rfcv LIKE '%$busqueda%' OR
+                                                u.nameuser LIKE '%$busqueda%')
+                                            ORDER BY u.id ASC"; 
 
+                                $resultado = $conexion->query($sql_registe);
+                                    
                                 //Impresión de filas
-                                    while($row = $resultado->fetch_assoc()){?>
+                                while($row = $resultado->fetch_assoc()){?>
                                         <tr>
                                         <th> <?php echo $row['id']; ?></th>
                                         <td> <?php echo $row['nombrev']; ?></td>
@@ -151,9 +185,9 @@
                                         <td> <?php echo $row['nameuser']; ?></td>
                                         <td> <?php
                                                 if($row['id_rol'] == "1"){
-                                                    echo "Administrador";
+                                                    echo "administrador";
                                                 }else{
-                                                    echo "Vendedor";
+                                                    echo "vendedor";
                                                 }
                                         ?></td>
                                         <td> <?php echo

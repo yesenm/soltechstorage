@@ -106,6 +106,15 @@
                     rfcv, nameuser, contrasena, id_rol)
                     values('$nombrev', '$telefonov', '$direccionv', '$correov', 
                     '$rfcv', '$nameuser', '$pass_cifrado','$id_rol')");
+
+                    $nombrev="";
+                    $telefonov="";
+                    $direccionv="";
+                    $correov="";
+                    $rfcv="";
+                    $nameuser="";
+                    $pass_cifrado="";
+                    $id_rol="";
                     
                     if(!mysqli_query($conexion,$insert)){
                         echo "Error: ".mysqli_error($conexion);

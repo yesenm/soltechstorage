@@ -110,9 +110,10 @@ nav{
     padding: 15px;
 }
 #buspro{
-    width: 49%;
+    width: 40%;
     border-color: transparent;
     padding: 6px;
+    margin-left: 20%;
 }
 #inv{
     background-color: #82c577;

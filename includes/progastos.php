@@ -87,13 +87,6 @@
                     echo "<br><div class='alert alert-success' role='alert'>
                     El gasto se ha registrado correctamente.
                     </div>";
-                    ?>
-                    <script>
-                        setTimeout(() => {
-                            window.location= 'gastos.php';
-                        }, 3000);
-                    </script>
-                    <?php
                     
                 mysqli_close($conexion);
             }
