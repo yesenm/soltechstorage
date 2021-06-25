@@ -1,28 +1,3 @@
-<?php
-
-    //Creacion de consulta para llenar los campos correctamente
-    $consulta = ConsultarGasto($_GET['id']);
-
-    function ConsultarGasto($id_prov){
-
-        //Conexión con la base de datos
-    $conexion = mysqli_connect("localhost","root","","soltech");
-    if(mysqli_connect_errno()){
-        echo "Fallo en la conexión. ".mysqli_connect_error();
-    }
-        $sentencia="SELECT * FROM gastos WHERE id='".$id_prov."'";
-        $resultado= $conexion->query($sentencia);
-        $row=mysqli_fetch_assoc($resultado);
-        return [
-            $row['id'],
-            $row['empleado'],
-            $row['rubro'],
-            $row['fecha'],
-            $row['proyecto'],
-            $row['cantidad']
-        ];
-    }
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Formulario de gastos</title>
+    <title>Proovedores</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
@@ -40,7 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!--Inicia Nabvar-->
+    <!--Inicia Nabvar-->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #7ad2ae;">
         
         <div class="container-fluid">
@@ -92,37 +67,42 @@
     </nav>
     <!--Finaliza Nabvar-->
     
-    <!--Inicia Formulario Gastos-Form -->
-    <div class="container col-6 lg-6 md-5">
-        <center><br>
-        <h4>Edita la información del gasto</h4>
-            <?php 
-                include("../includes/mod_gastos.php");
+    <br>
+    
+    <!--Inicia Formulario-->
+    <div class="container">
+        <center>
+            <h4>Agrega un nuevo proveedor</h4>
+
+            <?php
+            //Insertar un registro
+                include("../includes/proproveedores.php");
             ?>
-        <br>
-            <form id="VForm" class="rounded-3" method="POST"
-			action="">
-                    <input type="hidden" name="id" id="update_id" value="<?php echo $_GET['id'];?>">
-                    <label>Empleado</label>
-                    <input type="text" class="form-control" id="empleado" name="empleado" value="<?php echo $consulta[1];?>" placeholder="Ingresa el nombre del empleado">
-                    
-                    <label>Rubro</label>
-                    <input type="text" class="form-control" id="rubro" name="rubro" value="<?php echo $consulta[2];?>" placeholder="Añade el rubro del empleado">
-                    
-                    <label>Fecha</label>
-                    <input type="date" class="form-control" id="fecha" name="fecha" value="<?php echo $consulta[3];?>" placeholder="Ingresa la fecha del gasto">
-                    
-                    <label>Proyecto</label>
-                    <input type="text" class="form-control" id="proyecto" name="proyecto" value="<?php echo $consulta[4];?>" placeholder="Ingresa el nombre del proyecto">
-                    
-                    <label>Concepto cantidad</label>
-                    <input type="number" class="form-control" id="cantidad" name="cantidad" value="<?php echo $consulta[5];?>" placeholder="Ingresa la cantidad gastada">
-                    <br>
-                    <button type="submit" class="btn btn-primary" name="editarGasto" value="editarGasto">Editar gasto</button>
-                    <a href="gasto.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
+            <br>
+            <form id="PForm" class="rounded-3" method="POST"
+			action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <fieldset>
+                <label>Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre" name="nombrep" id="nombrep" value="<?php echo $nombrep;?>" class="rounded-3"/><br>
+                <label>Teléfono</label>
+                <input type="text" class="form-control" placeholder="Teléfono" name="telefonop" id="telefonop" value="<?php echo $telefonop;?>" class="rounded-3"/><br>
+                <label>Dirección</label>
+                <input type="text" class="form-control" placeholder="Dirección" name="direccionp" id="direccionp" value="<?php echo $direccionp;?>" class="rounded-3"/><br>
+                <label>Correo</label>
+                <input type="text" class="form-control" placeholder="Correo" name="correop" id="correop" value="<?php echo $correop;?>" class="rounded-3"/><br>
+                <label>RFC</label>
+                <input type="text" class="form-control" placeholder="RFC" name="rfcp" id="rfcp" value="<?php echo $rfcp;?>" class="rounded-3"/><br>
+                <label>Productos</label>
+                <input type="text" class="form-control" placeholder="Productos proveídos" name="productosp" id="productosp" value="<?php echo $productosp;?>" class="rounded-3"/><br>
+                <label>Empresa</label>
+                <input type="text" class="form-control" placeholder="Empresa" name="empresap" id="empresap" value="<?php echo $empresap;?>" class="rounded-3"/><br>
+                <button type="submit" class="btn btn-primary" name="enviar" value="Enviar datos">Agregar proveedor</button>
+                <a href="proveedores.php"><button type="button" class="btn btn-warning">Ir a gastos</button></a>
+                </fieldset>
             </form>
-        </div>
-    </center>
+        </center>
+    </div>
+    
     <!--Finaliza Formulario-->
     
     <!--Inicia Footer-->
@@ -132,5 +112,7 @@
     </footer>
     <!--Finaliza Footer-->
     
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+</body>
 </html>

@@ -67,7 +67,6 @@
     </nav>
     <!--Finaliza Nabvar-->
     <br>
-    <div class="container">
     <center>
 
     <?php 
@@ -90,21 +89,32 @@
             $sql = "DELETE FROM inventario WHERE id = $id";
 
             if($conect->query($sql) === true){
-                echo "<br><div class='alert alert-success' role='alert'>
-                        El registro se ha eliminado correctamente.
-                    </div>";
+                ?>
+                <script>
+                    alert('El registro se ha eliminado');
+                    window.location = "inventario.php";
+                </script>
+                <?php
             }else{
                 die("Error al actualizar datos: " . $conect->error);
             }
         }
     ?>
+
+    <?php
+        $busqueda = strtolower( $_REQUEST['busqueda']);
+        if(empty($busqueda)){
+            header("location: inventario.php");
+        }
+    ?>
     
-    
+    <div class="container">
         <form id="BPForm" class="rounded-3 form_search" action="buscar_producto.php" method="get">
-                <label>Registra un producto:</label>
+                <label>Registra producto:</label>
                 <a href="forminventario.php"><button class="btn btn-primary" type="button"><i class="fas fa-seedling"></i></button></a>
-                <input id="buspro" type="text" name="busqueda" placeholder="Buscar producto" aria-label="Search" class="rounded-3">
+                <input id="buspro" value="<?php echo $busqueda; ?>" type="text" name="busqueda" placeholder="Buscar producto" aria-label="Search" class="rounded-3">
                 <button class="btn btn-success btn_search" type="submit" value="Buscar"><i class="fas fa-search"></i></button>
+                <a href="inventario.php"><button class="btn btn-warning" type="button"><i class="fas fa-book-open"></i></button></a>
                 <a href="../includes/pdf/pdfinventario.php"><button class="btn btn-info" type="button"><i class="fas fa-file-pdf"></i></button></a>
         </form>   
 
@@ -157,8 +167,19 @@
                         }
 
                         //Consulta a la base de datos
-                        $productos= "SELECT * FROM inventario";
-                        $resultado= $conexion->query($productos);
+                        $sql_registe= ("SELECT * FROM inventario
+                        WHERE (id LIKE '%$busqueda%' OR
+                            codigoi LIKE '%$busqueda%' OR
+                            descripcioni LIKE '%$busqueda%' OR
+                            medidasi LIKE '%$busqueda%' OR
+                            pmayoreoi LIKE '%$busqueda%' OR
+                            pbrutoi LIKE '%$busqueda%' OR
+                            pnetoi LIKE '%$busqueda%')OR
+                            existenciasi LIKE '%$busqueda%' OR
+                            proveedoresi LIKE '%$busqueda%' OR
+                            categoriai LIKE '%$busqueda%'");
+                                                    
+                        $resultado = $conexion->query($sql_registe);
 
                         //Impresión de filas
                         while($row = $resultado->fetch_assoc()){?>

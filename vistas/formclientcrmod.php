@@ -126,6 +126,7 @@
                 <label>Fecha límite</label>
                 <input type="date" class="form-control" name="fechalicr" id="fechalicr" value="<?php echo $consulta[8];?>" class="rounded-3"/><br>
                 <button type="submit" class="btn btn-primary" name="editarclientcr" value="editarclientcr">Editar cliente</button>
+                <a href="clientecr.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
             </fieldset>
     </form>
 </div>

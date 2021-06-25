@@ -52,7 +52,7 @@
                 echo "Fallo en la conexión. ".mysqli_connect_error();
             }
             
-            $query ="select max(id) as maximo from vendedores";
+            $query ="select max(id) as maximo from gastos";
             $result = mysqli_query($conexion,$query);
             $row = mysqli_fetch_array($result);
             $numero = $row["maximo"];
@@ -88,6 +88,11 @@
                     El gasto se ha registrado correctamente.
                     </div>";
                     
+                    $empleado="";
+                    $rubro="";
+                    $fecha="";
+                    $proyecto="";
+                    $cantidad="";
                 mysqli_close($conexion);
             }
         }

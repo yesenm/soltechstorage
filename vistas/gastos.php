@@ -71,9 +71,6 @@
     <br>
     <center>
         <div class="container">
-            <div class="mb-3"><br>
-                <h4>Buscar Gasto</h4>
-            </div>
 
             <?php
 
@@ -104,29 +101,17 @@
                 }
             ?>
 
-            <form id="BPForm" class="rounded-3">
-                <input id="buspro" type="search" placeholder="Buscar proveedor" aria-label="Search">
-                <button class="btn btn-success" type="submit">Buscar</button>
-                <div class="dropdown">
-                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            categorias
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
-            </form><br>
-                <div class="btn-group" role="group">
-                    <a href="../includes/pdf/pdfgastos.php"><button class="btn btn-success" type="button">Generar reporte en PDF</button></a>
-                    <a href="formgastos.php"><button class="btn btn-primary" type="button">Agregar un nuevo gasto</button></a>
-                </div>
+            <form id="BPForm" class="rounded-3 form_search" action="buscar_gasto.php" method="get">
+                <label>Registra un gasto:</label>
+                <a href="formgastos.php"><button class="btn btn-primary" type="button"><i class="fas fa-dollar-sign"></i></button></a>
+                <input id="buspro" type="text" name="busqueda" placeholder="Buscar gasto" aria-label="Search" class="rounded-3">
+                <button class="btn btn-success btn_search" type="submit" value="Buscar"><i class="fas fa-search"></i></button>
+                <a href="../includes/pdf/pdfgastos.php"><button class="btn btn-info" type="button"><i class="fas fa-file-pdf"></i></button></a>
+            </form>
+                    
             <div class="mb-3"><br>
                 <h4>Gastos</h4>
             </div>
-
-
 
             <!--Inicia tabla-->
             <form id="BPForm" class="rounded-3">

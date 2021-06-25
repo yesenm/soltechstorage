@@ -121,7 +121,7 @@
             <label>Confirma la nueva contraseña</label>
             <input type="password" placeholder="Escribe nuevamente la nueva contraseña" name="confirmcon" class="form-control" value="<?php echo $confirmcon; ?>">
             <br>
-            <button type="submit" class="btn btn-primary" name="editpass" value="editpass">Editar cliente</button>
+            <button type="submit" class="btn btn-primary" name="editpass" value="editpass">Cambiar contraseña</button>
             <a href="vendedores.php"><button type="button" class="btn btn-warning">Cencelar</button></a>
         </form></center>
     </div>

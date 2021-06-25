@@ -93,6 +93,12 @@
                     echo "<br><div class='alert alert-success' role='alert'>
                     El cliente potencial se ha registrado
                     </div>";
+
+                    $nombrepo="";
+                    $telefonopo="";
+                    $direccionpo ="";
+                    $correopo="";
+                    $rfcpo="";
                     
                 } else if(mysqli_num_rows(mysqli_query($conexion,$instruccion))>0){
                     echo "<br><div class='alert alert-danger' role='alert'>

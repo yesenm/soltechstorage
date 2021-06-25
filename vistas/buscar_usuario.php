@@ -144,7 +144,6 @@
                                 if(mysqli_connect_errno()){
                                     echo "Fallo en la conexión. ".mysqli_connect_error();
                                 }
-
                                 
                                 //Consulta a la base de datos
                                 $sql_registe= ("SELECT * FROM vendedores
@@ -155,22 +154,7 @@
                                                     correov LIKE '%$busqueda%' OR
                                                     rfcv LIKE '%$busqueda%' OR
                                                     nameuser LIKE '%$busqueda%')");
-                                                                                
-                                
-                                $result_register = $conexion->query($sql_registe);
-                                
-                                $query = "SELECT u.id, u.nombrev, u.telefonov, u.direccionv, u.correov,
-                                            u.rfcv, u.nameuser FROM vendedores u 
-                                            INNER JOIN rol r ON u.id_rol = r.idol
-                                            WHERE (id LIKE '%$busqueda%' OR
-                                                u.nombrev LIKE '%$busqueda%' OR
-                                                u.telefonov LIKE '%$busqueda%' OR
-                                                u.direccionv LIKE '%$busqueda%' OR
-                                                u.correov LIKE '%$busqueda%' OR
-                                                u.rfcv LIKE '%$busqueda%' OR
-                                                u.nameuser LIKE '%$busqueda%')
-                                            ORDER BY u.id ASC"; 
-
+                                                                            
                                 $resultado = $conexion->query($sql_registe);
                                     
                                 //Impresión de filas

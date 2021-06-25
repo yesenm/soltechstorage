@@ -107,6 +107,14 @@
                     echo "<br><div class='alert alert-success' role='alert'>
                     El crédito del cliente se ha registrado correctamente.
                     </div>";
+
+                    $nombrecr="";
+                    $telefonocr="";
+                    $direccioncr ="";
+                    $correocr="";
+                    $rfccr="";
+                    $cantidadcr="";
+                    $fechalicr="";
                     
                 } else if(mysqli_num_rows(mysqli_query($conexion,$instruccion))>0){
                     echo "<br><div class='alert alert-danger' role='alert'>

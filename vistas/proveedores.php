@@ -72,11 +72,7 @@
     <!--Inicia Formulario-->
     <div class="container">
         <center>
-            <h4>Agrega un nuevo proveedor</h4>
-
             <?php
-            //Insertar un registro
-                include("../includes/proproveedores.php");
 
                 //Eliminacion de un registro
             $servidor = "localhost";
@@ -104,37 +100,12 @@
                 }
             }
             ?>
-            <br>
-            <form id="PForm" class="rounded-3" method="POST"
-			action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <fieldset>
-                <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre" name="nombrep" id="nombrep" value="<?php echo $nombrep;?>" class="rounded-3"/><br>
-                <label>Teléfono</label>
-                <input type="text" class="form-control" placeholder="Teléfono" name="telefonop" id="telefonop" value="<?php echo $telefonop;?>" class="rounded-3"/><br>
-                <label>Dirección</label>
-                <input type="text" class="form-control" placeholder="Dirección" name="direccionp" id="direccionp" value="<?php echo $direccionp;?>" class="rounded-3"/><br>
-                <label>Correo</label>
-                <input type="text" class="form-control" placeholder="Correo" name="correop" id="correop" value="<?php echo $correop;?>" class="rounded-3"/><br>
-                <label>RFC</label>
-                <input type="text" class="form-control" placeholder="RFC" name="rfcp" id="rfcp" value="<?php echo $rfcp;?>" class="rounded-3"/><br>
-                <label>Productos</label>
-                <input type="text" class="form-control" placeholder="Productos proveídos" name="productosp" id="productosp" value="<?php echo $productosp;?>" class="rounded-3"/><br>
-                <label>Empresa</label>
-                <input type="text" class="form-control" placeholder="Empresa" name="empresap" id="empresap" value="<?php echo $empresap;?>" class="rounded-3"/><br>
-                <button type="submit" class="btn btn-primary" name="enviar" value="Enviar datos">Agregar proveedor</button>
-                </fieldset>
-            </form>
-            
-            
-            <div class="mb-3"><br>
-                <h4>Busca proveedor</h4>
-            </div>
-            
-            <form id="BPForm" class="rounded-3">
-                <input id="buspro" type="search" placeholder="Buscar proveedor" aria-label="Search">
-                <button class="btn btn-success" type="submit">Buscar</button>
-            </form>
+    <form id="BPForm" class="rounded-3 form_search" action="buscar_proveedor.php" method="get">
+        <label>Registra un proveedor:</label>
+        <a href="ifproveedor.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
+        <input id="buspro" type="text" name="busqueda" placeholder="Buscar proveedor" aria-label="Search" class="rounded-3">
+        <button class="btn btn-success btn_search" type="submit" value="Buscar"><i class="fas fa-search"></i></button>
+    </form>
             
             <div class="mb-3"><br>
                 <h4>Proveedores</h4>

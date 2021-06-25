@@ -72,61 +72,42 @@
     <!--Inicia Formulario-->
     <div class="container">
         <center>
-            <h4>Agrega un nuevo cliente potencial</h4>
-            <?php 
-                include("../includes/proclientespo.php");
 
-                $servidor = "localhost";
-                $nombreusuario = "root";
-                $password = "";
-                $db = "soltech";
-            
-                $conect = new mysqli($servidor, $nombreusuario, $password, $db);
-            
-                if($conect->connect_error){
-                    die("Conexión fallida: " . $conect->connect_error);
+            <?php 
+
+            //Eliminacion de un registro
+            $servidor = "localhost";
+            $nombreusuario = "root";
+            $password = "";
+            $db = "soltech";
+        
+            $conect = new mysqli($servidor, $nombreusuario, $password, $db);
+        
+            if($conect->connect_error){
+                die("Conexión fallida: " . $conect->connect_error);
+            }
+            //metodo de eliminar
+            if(isset($_REQUEST['eliminar'])){
+                
+                $id = $_REQUEST['eliminar'];
+                $sql = "DELETE FROM clientespo WHERE id = $id";
+
+                if($conect->query($sql) === true){
+                    echo "<br><div class='alert alert-success' role='alert'>
+                            El registro se ha eliminado correctamente.
+                        </div>";
+                }else{
+                    die("Error al actualizar datos: " . $conect->error);
                 }
-                //metodo de eliminar
-                if(isset($_REQUEST['eliminar'])){
-                    
-                    $id = $_REQUEST['eliminar'];
-                    $sql = "DELETE FROM clientespo WHERE id = $id";
-    
-                    if($conect->query($sql) === true){
-                        echo "<br><div class='alert alert-success' role='alert'>
-                                El registro se ha eliminado correctamente.
-                            </div>";
-                    }else{
-                        die("Error al actualizar datos: " . $conect->error);
-                    }
-                }
-            ?>
-            <br>
-            <form id="PForm" class="rounded-3" method="POST"
-			action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <label>Nombre</label>
-                <input id="nombrepo" name="nombrepo" type="text" class="form-control" placeholder="Nombre" class="rounded-3" <?php echo $nombrepo; ?>>
-                <label>Teléfono</label>
-                <input id="telefonopo" name="telefonopo" type="text" class="form-control" placeholder="Teléfono" class="rounded-3" <?php echo $telefonopo; ?>>
-                <label>Dirección</label>
-                <input id="direccionpo" name="direccionpo" type="text" class="form-control" placeholder="Dirección" class="rounded-3" <?php echo $direccionpo; ?>>
-                <label>Correo</label>
-                <input id="correopo" name="correopo" type="text" class="form-control" placeholder="Correo" class="rounded-3" <?php echo $correopo; ?>>
-                <label>RFC</label>
-                <input id="rfcpo" name="rfcpo" type="text" class="form-control" placeholder="RFC" class="rounded-3" <?php echo $rfcpo; ?>>
-                <br>
-                <button type="submit" class="btn btn-primary" name="Agregar">Agregar cliente potencial</button>
-            </form>
-            
-            
-            <div class="mb-3"><br>
-                <h4>Busca cliente potencial</h4>
-            </div>
-            
-            <form id="BPForm" class="rounded-3">
-                <input id="buspro" type="search" placeholder="Buscar cliente" aria-label="Search">
-                <button class="btn btn-success" type="submit">Buscar</button>
-            </form>
+            }
+        ?>
+
+    <form id="BPForm" class="rounded-3 form_search" action="buscar_clientepo.php" method="get">
+        <label>Registra un cliente potencial:</label>
+        <a href="ifclientepo.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
+        <input id="buspro" type="text" name="busqueda" placeholder="Buscar cliente" aria-label="Search" class="rounded-3">
+        <button class="btn btn-success btn_search" type="submit" value="Buscar"><i class="fas fa-search"></i></button>
+    </form>
             
             <div class="mb-3"><br>
                 <h4>Clientes potenciales</h4>
@@ -205,7 +186,7 @@
     <!--Inicia Footer-->
     <br><br>
     <footer style="background-color: #7ad2ae;">
-        <h3>© Todos los derechos reservados</h3>
+        <h3>©️ Todos los derechos reservados</h3>
     </footer>
     <!--Finaliza Footer-->
     

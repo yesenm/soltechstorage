@@ -117,6 +117,7 @@
                 <label>RFC</label>
                 <input type="text" class="form-control" placeholder="RFC" name="rfcpo" id="rfcpo" value="<?php echo $consulta[5];?>" class="rounded-3"/><br>
                 <button type="submit" class="btn btn-primary" name="editarclip" value="editarclip">Editar cliente potencial</button>
+                <a href="clientepo.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
             </fieldset>
     </form>
 </div>

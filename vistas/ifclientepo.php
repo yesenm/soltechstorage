@@ -1,28 +1,3 @@
-<?php
-
-    //Creacion de consulta para llenar los campos correctamente
-    $consulta = ConsultarGasto($_GET['id']);
-
-    function ConsultarGasto($id_prov){
-
-        //Conexión con la base de datos
-    $conexion = mysqli_connect("localhost","root","","soltech");
-    if(mysqli_connect_errno()){
-        echo "Fallo en la conexión. ".mysqli_connect_error();
-    }
-        $sentencia="SELECT * FROM gastos WHERE id='".$id_prov."'";
-        $resultado= $conexion->query($sentencia);
-        $row=mysqli_fetch_assoc($resultado);
-        return [
-            $row['id'],
-            $row['empleado'],
-            $row['rubro'],
-            $row['fecha'],
-            $row['proyecto'],
-            $row['cantidad']
-        ];
-    }
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Formulario de gastos</title>
+    <title>Clientes Potenciales</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
@@ -92,45 +67,44 @@
     </nav>
     <!--Finaliza Nabvar-->
     
-    <!--Inicia Formulario Gastos-Form -->
-    <div class="container col-6 lg-6 md-5">
-        <center><br>
-        <h4>Edita la información del gasto</h4>
+    <br>
+    
+    <!--Inicia Formulario-->
+    <div class="container">
+        <center>
+            <h4>Agrega un nuevo cliente potencial</h4>
             <?php 
-                include("../includes/mod_gastos.php");
+                include("../includes/proclientespo.php");
             ?>
-        <br>
-            <form id="VForm" class="rounded-3" method="POST"
-			action="">
-                    <input type="hidden" name="id" id="update_id" value="<?php echo $_GET['id'];?>">
-                    <label>Empleado</label>
-                    <input type="text" class="form-control" id="empleado" name="empleado" value="<?php echo $consulta[1];?>" placeholder="Ingresa el nombre del empleado">
-                    
-                    <label>Rubro</label>
-                    <input type="text" class="form-control" id="rubro" name="rubro" value="<?php echo $consulta[2];?>" placeholder="Añade el rubro del empleado">
-                    
-                    <label>Fecha</label>
-                    <input type="date" class="form-control" id="fecha" name="fecha" value="<?php echo $consulta[3];?>" placeholder="Ingresa la fecha del gasto">
-                    
-                    <label>Proyecto</label>
-                    <input type="text" class="form-control" id="proyecto" name="proyecto" value="<?php echo $consulta[4];?>" placeholder="Ingresa el nombre del proyecto">
-                    
-                    <label>Concepto cantidad</label>
-                    <input type="number" class="form-control" id="cantidad" name="cantidad" value="<?php echo $consulta[5];?>" placeholder="Ingresa la cantidad gastada">
-                    <br>
-                    <button type="submit" class="btn btn-primary" name="editarGasto" value="editarGasto">Editar gasto</button>
-                    <a href="gasto.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
-            </form>
-        </div>
-    </center>
+            <br>
+            <form id="PForm" class="rounded-3" method="POST"
+			action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <label>Nombre</label>
+                <input id="nombrepo" name="nombrepo" type="text" class="form-control" placeholder="Nombre" class="rounded-3" value="<?php echo $nombrepo; ?>">
+                <label>Teléfono</label>
+                <input id="telefonopo" name="telefonopo" type="text" class="form-control" placeholder="Teléfono" class="rounded-3" value="<?php echo $telefonopo; ?>">
+                <label>Dirección</label>
+                <input id="direccionpo" name="direccionpo" type="text" class="form-control" placeholder="Dirección" class="rounded-3" value="<?php echo $direccionpo; ?>">
+                <label>Correo</label>
+                <input id="correopo" name="correopo" type="text" class="form-control" placeholder="Correo" class="rounded-3" value="<?php echo $correopo; ?>">
+                <label>RFC</label>
+                <input id="rfcpo" name="rfcpo" type="text" class="form-control" placeholder="RFC" class="rounded-3" value="<?php echo $rfcpo; ?>">
+                <br>
+                <button type="submit" class="btn btn-primary" name="Agregar">Agregar cliente potencial</button>
+                <a href="clientespo.php"><button class="btn btn-warning" type="button">Regresar a la lista de clientes potenciales</button></a>
+            </form> 
+       </center> 
+    </div>
     <!--Finaliza Formulario-->
     
     <!--Inicia Footer-->
     <br><br>
     <footer style="background-color: #7ad2ae;">
-        <h3>© Todos los derechos reservados</h3>
+        <h3>©️ Todos los derechos reservados</h3>
     </footer>
     <!--Finaliza Footer-->
     
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+</body>
 </html>

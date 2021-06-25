@@ -100,12 +100,19 @@
                 }
             }
         ?>
+        <?php
+            $busqueda = strtolower( $_REQUEST['busqueda']);
+            if(empty($busqueda)){
+            header("location: clientescr.php");
+            }
+        ?>
 
     <form id="BPForm" class="rounded-3 form_search" action="buscar_clientecr.php" method="get">
         <label>Registrar un crédito:</label>
         <a href="ifclientecr.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
-        <input id="buspro" type="text" name="busqueda" placeholder="Buscar producto" aria-label="Search" class="rounded-3">
+        <input id="buspro" value="<?php echo $busqueda; ?>" type="text" name="busqueda" placeholder="Buscar producto" aria-label="Search" class="rounded-3">
         <button class="btn btn-success btn_search" type="submit" value="Buscar"><i class="fas fa-search"></i></button>
+        <a href="clientescr.php"><button class="btn btn-warning" type="button"><i class="fas fa-book-open"></i></button></a>
     </form> 
             
         <div class="mb-3"><br>
@@ -136,9 +143,23 @@
                                 if(mysqli_connect_errno()){
                                     echo "Fallo en la conexión. ".mysqli_connect_error();
                                 }
+
                                 //Consulta a la base de datos
-                                $clientescr= "SELECT * FROM clientescr";
-                                $resultado= $conexion->query($clientescr);
+                                $sql_registe= ("SELECT * FROM clientescr
+                                    WHERE (id LIKE '%$busqueda%' OR
+                                    nombrecr LIKE '%$busqueda%' OR
+                                    telefonocr LIKE '%$busqueda%' OR
+                                    direccioncr LIKE '%$busqueda%' OR
+                                    correocr LIKE '%$busqueda%' OR
+                                    rfccr LIKE '%$busqueda%' OR
+                                    cantidadcr LIKE '%$busqueda%' OR
+                                    restantecr LIKE '%$busqueda%' OR
+                                    fechaprcr LIKE '%$busqueda%' OR
+                                    fechalicr LIKE '%$busqueda%'
+                                    )");
+
+                                $resultado = $conexion->query($sql_registe);
+
                                     //Impresión de filas
                                     while($row = $resultado->fetch_assoc()){?>
                                         <tr>

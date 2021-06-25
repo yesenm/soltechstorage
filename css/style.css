@@ -131,3 +131,10 @@ nav{
     width: 60%;
     padding: 15px;
 }
+
+#buspro1{
+    width: 40%;
+    border-color: transparent;
+    padding: 6px;
+    margin-left: 15%;
+}

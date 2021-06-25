@@ -1,3 +1,32 @@
+<?php
+
+    //Creacion de consulta para llenar los campos correctamente
+    $consulta = ConsultarVendedor($_GET['id']);
+
+    function ConsultarVendedor($id_prod){
+
+        //Conexión con la base de datos
+    $conexion = mysqli_connect("localhost","root","","soltech");
+    if(mysqli_connect_errno()){
+        echo "Fallo en la conexión. ".mysqli_connect_error();
+    }
+        $sentencia="SELECT * FROM inventario WHERE id='".$id_prod."'";
+        $resultado= $conexion->query($sentencia);
+        $row=mysqli_fetch_assoc($resultado);
+        return [
+            $row['id'],
+            $row['codigoi'],
+            $row['descripcioni'],
+            $row['medidasi'],
+            $row['pmayoreoi'],
+            $row['pbrutoi'],
+            $row['pnetoi'],
+            $row['existenciasi'],
+            $row['proveedoresi'],
+            $row['categoriai']
+        ];
+    }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -71,33 +100,33 @@
     <div class="container">
         <center>
             <!--Inicia Formulario-->
-            <h4>Agrega un nuevo producto</h4>
-                <?php 
-                include("../includes/insinventario.php");
-                ?>
+            <h4>Actualiza la información del producto</h4>
+            <?php
+                include("../includes/mod_producto.php");
+            ?>
             <br>
             
-            <form id="PForm" class="rounded-3" method="POST"
-			action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <form id="PForm" class="rounded-3" method="POST" action="">
+            <input type="hidden" name="id" id="update_id" value="<?php echo $_GET['id'];?>">
                     <label>Código del producto</label>
-                    <input id="codigoi" type="text" class="form-control" name="codigoi" value="<?php echo $codigoi; ?>" placeholder="Ingresa la descripcion del producto">
+                    <input id="codigoi" type="text" class="form-control" name="codigoi" value="<?php echo $consulta[1]; ?>" placeholder="Ingresa la descripcion del producto">
                     <label>Descripción</label>
-                    <input id="descripcioni" type="text" class="form-control" name="descripcioni" value="<?php echo $descripcioni; ?>" placeholder="Escribe la descripción del producto">
+                    <input id="descripcioni" type="text" class="form-control" name="descripcioni" value="<?php echo $consulta[2]; ?>" placeholder="Escribe la descripción del producto">
                 
                     <label>Medidas</label>
-                    <input id="medidasi" type="text" class="form-control" name="medidasi" value="<?php echo $medidasi; ?>" placeholder="Ingresa las medidas del producto">
+                    <input id="medidasi" type="text" class="form-control" name="medidasi" value="<?php echo $consulta[3]; ?>" placeholder="Ingresa las medidas del producto">
                 
                     <label>Precio por mayreo</label>
-                    <input id="pmayoreoi" type="number" class="form-control" name="pmayoreoi" value="<?php echo $pmayoreoi; ?>" placeholder="Escribe el precio por mayoreo">
+                    <input id="pmayoreoi" type="number" class="form-control" name="pmayoreoi" value="<?php echo $consulta[4]; ?>" placeholder="Escribe el precio por mayoreo">
                 
                     <label>Precio bruto</label>
-                    <input id="pbrutoi" type="number" class="form-control" name="pbrutoi" value="<?php echo $pbrutoi; ?>" placeholder="Escribe el precio bruto">
+                    <input id="pbrutoi" type="number" class="form-control" name="pbrutoi" value="<?php echo $consulta[5]; ?>" placeholder="Escribe el precio bruto">
                 
                     <label>Precio neto</label>
-                    <input id="pnetoi" type="number" class="form-control" name="pnetoi" value="<?php echo $pnetoi; ?>" placeholder="Ingresa el precio neto">
+                    <input id="pnetoi" type="number" class="form-control" name="pnetoi" value="<?php echo $consulta[6]; ?>" placeholder="Ingresa el precio neto">
                 
                     <label>Existencias</label>
-                    <input id="pexistenciasi" type="number" class="form-control" name="existenciasi" value="<?php echo $existenciasi; ?>" placeholder="Ingresa la cantidad de existencias">
+                    <input id="pexistenciasi" type="number" class="form-control" name="existenciasi" value="<?php echo $consulta[7]; ?>" placeholder="Ingresa la cantidad de existencias">
                     
                     <div id="proveedores">
                         <label>Elige el proveedor</label>
@@ -126,32 +155,32 @@
 
                     <label class="form-label">Elige la categoría a la que pertenece el producto</label>
                     <select class="form-select" name="categoriai" id="categoriai">
-                        <option value="Accesorios" <?php if($categoriai == "Accesorios") echo "selected"; ?>>Accesorios</option>
-                        <option value="Aspersores" <?php if($categoriai == "Aspersores") echo "selected"; ?>>Aspersores</option>
-                        <option value="CED. 40" <?php if($categoriai == "CED. 40") echo "selected"; ?>>CED. 40</option>
-                        <option value="CED. 80" <?php if($categoriai == "CED. 80") echo "selected"; ?>>CED. 80</option>
-                        <option value="Compuerta" <?php if($categoriai == "Compuerta") echo "selected"; ?>>Compuerta</option>
-                        <option value="Conex. Aluminio" <?php if($categoriai == "Conex. Aluminio") echo "selected"; ?>>Conex. Aluminio</option>
-                        <option value="Conex. Regantes" <?php if($categoriai == "Conex. Regantes") echo "selected"; ?>>Conex. Regantes</option>
-                        <option value="Combustibles" <?php if($categoriai == "Combustibles") echo "selected"; ?>>Combustibles</option>
-                        <option value="Fertiriego" <?php if($categoriai == "Fertiriego") echo "selected"; ?>>Fertiriego</option>
-                        <option value="Filtración" <?php if($categoriai == "Filtración") echo "selected"; ?>>Filtración</option>
-                        <option value="Galvanizados" <?php if($categoriai == "Galvanizados") echo "selected"; ?>>Galvanizados</option>
-                        <option value="Geomembrana" <?php if($categoriai == "Geomembrana") echo "selected"; ?>>Geomembrana</option>
-                        <option value="Medidores" <?php if($categoriai == "Medidores") echo "selected"; ?>>Medidores</option>
-                        <option value="Micro y Goteo" <?php if($categoriai == "Micro y Goteo") echo "selected"; ?>>Micro y Goteo</option>
-                        <option value="Paneles" <?php if($categoriai == "Paneles") echo "selected"; ?>>Paneles</option>
-                        <option value="Pzas Taller" <?php if($categoriai == "Pzas Taller") echo "selected"; ?>>Pzas Taller</option>
-                        <option value="Equipos Mecanizados" <?php if($categoriai == "Equipos Mecanizados") echo "selected"; ?>>Equipos Mecanizados</option>
-                        <option value="PEBD" <?php if($categoriai == "PEBD") echo "selected"; ?>>PEBD</option>
-                        <option value="Bombeo" <?php if($categoriai == "Bombeo") echo "selected"; ?>>Bombeo</option>
-                        <option value="Tuberías" <?php if($categoriai == "Tuberías") echo "selected"; ?>>Tuberías</option>
-                        <option value="LAY FLAT" <?php if($categoriai == "LAY FLAT") echo "selected"; ?>>LAY FLAT</option>
-                        <option value="Válvulas" <?php if($categoriai == "Válvulas") echo "selected"; ?>>Válvulas</option>
+                        <option value="Accesorios" <?php if($consulta[9] == "Accesorios") echo "selected"; ?>>Accesorios</option>
+                        <option value="Aspersores" <?php if($consulta[9] == "Aspersores") echo "selected"; ?>>Aspersores</option>
+                        <option value="CED. 40" <?php if($consulta[9] == "CED. 40") echo "selected"; ?>>CED. 40</option>
+                        <option value="CED. 80" <?php if($consulta[9] == "CED. 80") echo "selected"; ?>>CED. 80</option>
+                        <option value="Compuerta" <?php if($consulta[9] == "Compuerta") echo "selected"; ?>>Compuerta</option>
+                        <option value="Conex. Aluminio" <?php if($consulta[9] == "Conex. Aluminio") echo "selected"; ?>>Conex. Aluminio</option>
+                        <option value="Conex. Regantes" <?php if($consulta[9] == "Conex. Regantes") echo "selected"; ?>>Conex. Regantes</option>
+                        <option value="Combustibles" <?php if($consulta[9] == "Combustibles") echo "selected"; ?>>Combustibles</option>
+                        <option value="Fertiriego" <?php if($consulta[9] == "Fertiriego") echo "selected"; ?>>Fertiriego</option>
+                        <option value="Filtración" <?php if($consulta[9] == "Filtración") echo "selected"; ?>>Filtración</option>
+                        <option value="Galvanizados" <?php if($consulta[9] == "Galvanizados") echo "selected"; ?>>Galvanizados</option>
+                        <option value="Geomembrana" <?php if($consulta[9] == "Geomembrana") echo "selected"; ?>>Geomembrana</option>
+                        <option value="Medidores" <?php if($consulta[9] == "Medidores") echo "selected"; ?>>Medidores</option>
+                        <option value="Micro y Goteo" <?php if($consulta[9] == "Micro y Goteo") echo "selected"; ?>>Micro y Goteo</option>
+                        <option value="Paneles" <?php if($consulta[9] == "Paneles") echo "selected"; ?>>Paneles</option>
+                        <option value="Pzas Taller" <?php if($consulta[9] == "Pzas Taller") echo "selected"; ?>>Pzas Taller</option>
+                        <option value="Equipos Mecanizados" <?php if($consulta[9] == "Equipos Mecanizados") echo "selected"; ?>>Equipos Mecanizados</option>
+                        <option value="PEBD" <?php if($consulta[9] == "PEBD") echo "selected"; ?>>PEBD</option>
+                        <option value="Bombeo" <?php if($consulta[9] == "Bombeo") echo "selected"; ?>>Bombeo</option>
+                        <option value="Tuberías" <?php if($consulta[9] == "Tuberías") echo "selected"; ?>>Tuberías</option>
+                        <option value="LAY FLAT" <?php if($consulta[9] == "LAY FLAT") echo "selected"; ?>>LAY FLAT</option>
+                        <option value="Válvulas" <?php if($consulta[9] == "Válvulas") echo "selected"; ?>>Válvulas</option>
                     </select>
                     <br>
-                    <button type="submit" class="btn btn-primary" name="agregarproducto" value="agregarproducto">Agregar Producto</button>
-                    <a href="inventario.php"><button type="button" class="btn btn-warning">Ir a inventario</button></a>
+                    <button type="submit" class="btn btn-primary" name="editarproducto" value="editarproducto">Editar Producto</button>
+                    <a href="inventario.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
             </form>
         </center>
     </div>
