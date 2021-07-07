@@ -12,7 +12,7 @@
     }
 
     $usuario = $_SESSION["usuario_valido"];
-    echo $usuario;
+    //echo $usuario;
 
     $conexion=mysqli_connect("localhost","root","","soltech");
 
@@ -24,7 +24,7 @@
         while($row=mysqli_fetch_array($consulta)){
             $prueba = $row['id_rol'];
                 
-            echo $prueba;
+            //echo $prueba;
         }
 
     if($prueba == 1){

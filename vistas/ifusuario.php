@@ -79,31 +79,66 @@
         <br>
 		<form  id="PForm" class="rounded-3" method="POST"
 			action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-
-            
 			<fieldset>
-				<label>Nombre Completo:</label>
-				<input type="text" class="form-control" placeholder="Escribe el nombre completo del usuario" name="nombrev" id="nombrev" value="<?php echo $nombrev;?>" /><br/>
-				<label>Telefono:</label>
-				<input type="text" class="form-control" placeholder="Ingresa el teléfono del usuario" name="telefonov" id="telefonov" value="<?php echo $telefonov;?>" /><br/>
-				<label>Dirección:</label>
-				<input type="text" class="form-control" placeholder="Escribe la dirección del usuario" name="direccionv" id="direccionv" value="<?php echo $direccionv;?>" /><br/>
-				<label>Correo:</label>
-				<input type="text" class="form-control" placeholder="Ingresa el email del usuario" name="correov" id="correov" value="<?php echo $correov;?>" /><br/>
-                <label>RFC:</label>
-				<input type="text" class="form-control" placeholder="Escribe el RFC del usuario" name="rfcv" id="rfcv" value="<?php echo $rfcv;?>" /><br/>
-                <label>Nombre de usuario:</label>
-				<input type="text" class="form-control" placeholder="Ingresa el nombre de usuario (Con este podrá iniciar sesión)" name="nameuser" id="nameuser" value="<?php echo $nameuser;?>" /><br/>
-				<label>Password:</label>
-				<input type="password" class="form-control" placeholder="Escribe la contraseña del usuario" name="contrasena" id="contrasena" value="<?php echo $pass_cifrado;?>" /><br/>
-                <label>Elige un rol para el usuario:</label>
-                <select class="form-control" name="id_rol" id="id_rol">
-                    <option value="1" <?php if($id_rol == "1") echo "selected" ?> >Administrador</option>
-                    <option value="2" <?php if($id_rol == "2") echo "selected" ?> >Vendedor</option>
-                </select><br>
-                <button type="submit" class="btn btn-primary" name="enviar" value="Enviar datos">Registrar</button>
-                <a href="vendedores.php"><button class="btn btn-warning" type="button">Regresar a la lista de usuarios</button></a>
-			</fieldset>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Nombre Completo:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Escribe el nombre completo del usuario" name="nombrev" id="nombrev" value="<?php echo $nombrev;?>" />
+                        </div>
+                    </div>   
+                    <div class="col-md-4">
+                        <label>Telefono:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Ingresa el teléfono del usuario" name="telefonov" id="telefonov" value="<?php echo $telefonov;?>" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Dirección:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Escribe la dirección del usuario" name="direccionv" id="direccionv" value="<?php echo $direccionv;?>" />
+                        </div>
+                    </div>  
+                    <div class="col-md-6">
+                        <label>Correo:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Ingresa el email del usuario" name="correov" id="correov" value="<?php echo $correov;?>" />
+                        </div>
+                    </div>  
+                    <div class="col-md-6">
+                        <label>RFC:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Escribe el RFC del usuario" name="rfcv" id="rfcv" value="<?php echo $rfcv;?>" />
+                        </div>
+                    </div>  
+                    <div class="col-md-4">
+                        <label>Nombre de usuario:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Ingresa el nombre de usuario (Con este podrá iniciar sesión)" name="nameuser" id="nameuser" value="<?php echo $nameuser;?>" /><br/>
+                        </div>
+                    </div>  
+                    <div class="col-md-4">
+                        <label>Password:</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="Escribe la contraseña del usuario" name="contrasena" id="contrasena" value="<?php echo $pass_cifrado;?>" />
+                        </div>
+                    </div>  
+                    <div class="col-md-4">
+                        <label>Elige un rol para el usuario:</label>
+                        <div class="input-group">
+                            <select class="form-control" name="id_rol" id="id_rol">
+                            <option value="1" <?php if($id_rol == "1") echo "selected" ?> >Administrador</option>
+                            <option value="2" <?php if($id_rol == "2") echo "selected" ?> >Vendedor</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12"><br>
+                        <button type="submit" class="btn btn-primary" name="enviar" value="Enviar datos">Registrar</button>
+                        <a href="vendedores.php"><button class="btn btn-warning" type="button">Regresar a la lista de usuarios</button></a>
+                    </div>
+                </div>
+            </fieldset>
 		</form>
         </center>
         </div>

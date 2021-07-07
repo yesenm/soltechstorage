@@ -33,7 +33,7 @@
     }else{
         die("Error al crear tabla: " . $conexion->error);
     }*/
-
+/*
     //CReacion de la tabla inventario
     $sql = "CREATE TABLE inventario(
         id INT(3) AUTO_INCREMENT PRIMARY KEY,
@@ -48,9 +48,35 @@
         categoriai VARCHAR (100) NOT NULL
     )";
 
+    $sql= "CREATE TABLE `ventasregis` (
+        `invoice_id` int(11) AUTO_INCREMENT PRIMARY KEY,
+        `cashier_name` varchar(100) NOT NULL,
+        `order_date` date NOT NULL,
+        `time_order` varchar(50) NOT NULL,
+        `total` float NOT NULL,
+        `paid` float NOT NULL,
+        `due` float NOT NULL,
+        `cliente` varchar(100) NOT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=latin1";*/
+
+      //Tabla de facturas
+      $sql= "CREATE TABLE `factura` (
+        `id` int(11) AUTO_INCREMENT PRIMARY KEY,
+        `invoice_id` int(11) NOT NULL,
+        `product_id` int(11) NOT NULL,
+        `product_code` char(6) NOT NULL,
+        `product_description` varchar(100) NOT NULL,
+        `cantidad` int(11) NOT NULL,
+        `iva` int(11) NOT NULL,
+        `precio` float NOT NULL,
+        `total` float NOT NULL,
+        `order_date` date NOT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
+
     if($conexion->query($sql) === true){
         echo "La tabla se creó correctamente...";
     }else{
         die("Error al crear tabla: " . $conexion->error);
     }
+
 ?>

@@ -118,6 +118,7 @@ nav{
 #inv{
     background-color: #82c577;
     padding: 15px;
+    width: 90%;
 }
 
 .botonsubmit{
@@ -137,4 +138,10 @@ nav{
     border-color: transparent;
     padding: 6px;
     margin-left: 15%;
+}
+
+#FormVentas{
+    background-color: #82c577;
+    width: 95%;
+    padding: 15px;
 }

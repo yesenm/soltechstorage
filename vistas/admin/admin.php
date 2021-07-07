@@ -90,7 +90,6 @@
                         Opciones
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #7ad2ae;">
-                            <li><a class="dropdown-item" href="habilitar.php">Habilitar permisos</a></li>
                             <li><a class="dropdown-item" href="../../includes/logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>

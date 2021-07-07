@@ -126,7 +126,7 @@
 
                     <label class="form-label">Elige la categoría a la que pertenece el producto</label>
                     <select class="form-select" name="categoriai" id="categoriai">
-                        <option value="Accesorios" <?php if($categoriai == "Accesorios") echo "selected"; ?>>Accesorios</option>
+                        <option value="Accesorios" <?php if($categoriai == 'Accesorios') echo "selected"; ?>>Accesorios</option>
                         <option value="Aspersores" <?php if($categoriai == "Aspersores") echo "selected"; ?>>Aspersores</option>
                         <option value="CED. 40" <?php if($categoriai == "CED. 40") echo "selected"; ?>>CED. 40</option>
                         <option value="CED. 80" <?php if($categoriai == "CED. 80") echo "selected"; ?>>CED. 80</option>

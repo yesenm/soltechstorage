@@ -11,6 +11,11 @@
         }
     }*/
 ?>
+<?php
+    //Conexion con la base de datos
+    $conexion = mysqli_connect("localhost","root","","soltech");
+    if(mysqli_connect_errno()){echo "Fallo en la conexión. ".mysqli_connect_error();}
+?>
 
 <!doctype html>
 <html lang="en">
@@ -82,50 +87,98 @@
     <!--Finaliza Nabvar-->
     
     <!--Inicia Formulario-->
-    
     <div class="container">
-        <center><br>
-            <div class="btn-group" role="group">
-                <button class="btn btn-success" type="button">Generar reporte en PDF</button>
-                <a href="ventas.php"><button class="btn btn-primary" type="button">Agregar nueva venta</button></a>
-            </div>
-        </center>
+    <center>
+   
+    <?php
+        //Eliminacion de un registro
+        $servidor = "localhost";
+        $nombreusuario = "root";
+        $password = "";
+        $db = "soltech";
+    
+        $conect = new mysqli($servidor, $nombreusuario, $password, $db);
+    
+        if($conect->connect_error){
+            die("Conexión fallida: " . $conect->connect_error);
+        }
+        //metodo de eliminar
+        if(isset($_REQUEST['eliminar'])){
+            
+            $id = $_REQUEST['eliminar'];
+            $sql = "DELETE FROM ventasregis WHERE invoice_id = $id";
+
+            if($conect->query($sql) === true){
+                echo "<br><div class='alert alert-success' role='alert'>
+                        La venta se ha eliminado correctamente.
+                    </div>";
+            }else{
+                die("Error al actualizar datos: " . $conect->error);
+            }
+        }
+    ?>
+    <br>
+        <form id="BPForm" class="rounded-3 form_search" action="buscar_venta.php" method="get">
+            <label>Registra una venta:</label>
+            <a href="ventav.php"><button class="btn btn-primary" type="button"><i class="fas fa-cart-plus"></i></button></a>
+            <input id="buspro" type="text" name="busqueda" placeholder="Buscar venta" aria-label="Search" class="rounded-3">
+            <button class="btn btn-success btn_search" type="submit" value="Buscar"><i class="fas fa-search"></i></button>
+            <a href="../includes/pdf/pdfventas.php"><button class="btn btn-info" type="button"><i class="fas fa-file-pdf"></i></button></a>
+        </form>
+                
+        <div class="mb-3"><br>
+            <h4>Ventas</h4>
+        </div>
+
+    </center>
+    </div>
+
+    <div class="container">
+    <center>
         <br>
         <form id="inv" class="rounded-3">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Código</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Precio de Venta</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Importe</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Nombre cliente </th>
-                            <th scope="col">Responsable</th>
-                            <th scope="col">opciones</th>
+                            <th style="width:20px;">No</th>
+                            <th style="width:150px;">Vendedor</th>
+                            <th style="width:150px;">Cliente</th>
+                            <th style="width:50px;">Fecha</th>
+                            <th style="width:50px;">Monto</th>
+                            <th style="width:50px;">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr> 
+                    <?php
+                        $no = 1;
+                        //Consulta a la base de datos
+                        $ventas= "SELECT * FROM ventasregis ORDER BY invoice_id DESC";
+                        $resultado= $conexion->query($ventas);
+                            //Impresión de filas
+                            while($row = $resultado->fetch_assoc()){?>
+                                <tr>
+                                <th> <?php echo $no++; ?></th>
+                                <td> <?php echo $row['cashier_name']; ?></td>
+                                <td> <?php echo $row['cliente']; ?></td>
+                                <td> <?php echo $row['order_date']; ?></td>
+                                <td>$ <?php echo $row['total']; ?></td>
+                                <td>
+                                    <a href="../includes/pdf/pdffactura.php?id=<?php echo $row['invoice_id']; ?>" target="_blank" class="btn btn-info btn-sm"><i class="fa fa-print"></i></a>
+                                    <?php if($_SESSION['rol_id']=="1"){ ?>
+                                <form method="POST" id="form_eliminar_<?php echo $row['invoice_id']; ?>" action="ventasreg.php">
+                                            <button type="submit" name="eliminar" value="<?php echo $row['invoice_id']; ?>" class="btn btn-danger btn-sm eliminar"><i class="fas fa-trash"></i></button>
+                                           
+                                <?php } ?>
+                                </td>
+                                </tr>
+                            <?php } mysqli_free_result($resultado); ?>
                     </tbody>
                 </table>
             </div>
         </form>
     </div>
+    </center>
     <!--Finaliza Formulario-->
     
     <!--Inicia Footer-->
@@ -134,6 +187,22 @@
         <h3>© Todos los derechos reservados</h3>
     </footer>
     <!--Finaliza Footer-->
+
+    <script>
+            function confirmation (e){
+                if(confirm ("¿Estas seguro de eliminar este registro?")){
+                    return true;
+                }else{
+                    e.preventDefault();
+                }
+            }
+
+            let linkEliminar = document.querySelectorAll(".eliminar");
+
+            for(var i = 0; i < linkEliminar.length; i++){
+                linkEliminar[i].addEventListener('click', confirmation);
+            }
+        </script>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>

@@ -105,7 +105,7 @@
                 $sql = ("INSERT INTO inventario(codigoi, descripcioni, medidasi, pmayoreoi, 
                                 pbrutoi, pnetoi, existenciasi, proveedoresi, categoriai)
                         VALUES('$codigoi', '$descripcioni', '$medidasi', '$pmayoreoi','$pbrutoi',
-                                '$pnetoi', '$existenciasi', '$proveedoresi', '$categoriai)");
+                                '$pnetoi', '$existenciasi', '$proveedoresi', '$categoriai')");
                 
                 echo "<br><div class='alert alert-success' role='alert'>
                 El producto se ha registrado correctamente.
