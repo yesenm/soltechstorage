@@ -85,7 +85,7 @@
                         ?>
                         <script>
                             setTimeout(() => {
-                                window.location= "../vistas/gastos.php";
+                                window.location= "../admin/gastos.php";
                             }, 3000);
                         </script>
                         <?php

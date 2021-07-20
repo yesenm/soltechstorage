@@ -126,7 +126,7 @@
                     
                 } else if(mysqli_num_rows(mysqli_query($conexion,$instruccion))>0){
                     echo "<br><div class='alert alert-danger' role='alert'>
-                    Ya existe un usuario con este nombre.
+                    Ya existe un usuario con este nombre de usuario.
                     </div>";
                 }
                 mysqli_close($conexion);

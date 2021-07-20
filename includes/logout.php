@@ -4,5 +4,5 @@
     session_unset(); 
     session_destroy();
 
-    header('location: ../vistas/login.php');
+    header('location: ../vistas/index.php');
 ?>

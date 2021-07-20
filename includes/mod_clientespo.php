@@ -87,7 +87,7 @@
                         ?>
                         <script>
                             setTimeout(() => {
-                                window.location= "../vistas/clientespo.php";
+                                window.location= "../admin/clientespo.php";
                             }, 3000);
                         </script>
                         <?php

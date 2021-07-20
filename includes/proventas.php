@@ -29,16 +29,11 @@ if(isset($_POST['save_order'])){
     }else{
         //Eventual
         if($clientepo == "" && $clientecr ==""){
-            echo '<script>console.log("Entré a eventuales");</script>';
-            
             //inserta en ventas registradas
             $sql = ("INSERT INTO ventasregis(cashier_name, order_date, time_order, total, paid, due, cliente)
             VALUES('$cashier_name', '$order_date', '$order_time', '$total','$paid', '$due', '$clienteev')");
             
             if(!mysqli_query($conexion,$sql)){echo "Error: ".mysqli_error($conexion);}
-            
-            echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-            Venta registrada correctamente</center></div></div>";
             
             $invoice_id = mysqli_insert_id($conexion);
             
@@ -55,10 +50,7 @@ if(isset($_POST['save_order'])){
                         $cambios ="UPDATE inventario SET existenciasi ='$rem_qty' 
                         WHERE id='".$arr_product_id[$i]."'";
                         
-                        if(mysqli_query($conexion,$cambios)){
-                            echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-                            Stock actualizado</center></div></div>";
-                        }
+                        if(mysqli_query($conexion,$cambios)){}
                         
                         if(!mysqli_query($conexion,$cambios)){echo"Error".mysqli_error($conexion);}
                     }
@@ -72,11 +64,12 @@ if(isset($_POST['save_order'])){
                     
                     if(!mysqli_query($conexion,$insert)){echo "Error: ".mysqli_error($conexion);}
                     
-                    echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-                    Factura creada</center></div></div>";
-                    
                 }
-                //echo '<script>location.href="../includes/pdf/pdffactura.php";</script>';
+                echo "<script>
+                alert('Venta registrada, imprime el ticket desde el registro de ventas');
+                window.location= 'ventasreg.php';
+                </script>";
+                
             }
             //Potencial
         }else if ($clienteev == "" && $clientecr ==""){
@@ -89,10 +82,7 @@ if(isset($_POST['save_order'])){
             $up = $cantidadpo + 1;
             $update = "UPDATE clientespo SET cantidadpo='$up' WHERE nombrepo='$clientepo' ";
             
-            if(mysqli_query($conexion,$update)){
-                echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-                Cliente actualizado</center></div></div>";
-            }
+            if(mysqli_query($conexion,$update)){}
             if(!mysqli_query($conexion,$update)){echo"Error".mysqli_error($conexion);}
             
             //Insertar venta
@@ -101,12 +91,9 @@ if(isset($_POST['save_order'])){
             
             if(!mysqli_query($conexion,$sql)){echo "Error: ".mysqli_error($conexion);}
             
-            echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-            Venta registrada correctamente</center></div></div>";
-            
             $invoice_id = mysqli_insert_id($conexion);
             
-            if($invoice_id!=null){echo '<script>console.log("Tengo la ultima id");</script>';
+            if($invoice_id!=null){
                 for($i=0; $i<count($arr_product_id); $i++){
                     
                     $rem_qty = $arr_product_exi[$i] - $arr_product_can[$i];
@@ -119,10 +106,7 @@ if(isset($_POST['save_order'])){
                         $cambios ="UPDATE inventario SET existenciasi ='$rem_qty' 
                         WHERE id='".$arr_product_id[$i]."'";
                         
-                        if(mysqli_query($conexion,$cambios)){
-                            echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-                            Stock actualizado</center></div></div>";
-                        }
+                        if(mysqli_query($conexion,$cambios)){}
                         
                         if(!mysqli_query($conexion,$cambios)){echo"Error".mysqli_error($conexion);}
                     }
@@ -134,11 +118,11 @@ if(isset($_POST['save_order'])){
                     '$order_date')");
                     
                     if(!mysqli_query($conexion,$insert)){echo "Error: ".mysqli_error($conexion);}
-                    
-                    echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-                    Factura creada</center></div></div>";                    
                 }
-                //echo '<script>location.href="../includes/pdf/pdffactura.php";</script>';
+                echo "<script>
+                alert('Venta registrada, imprime el ticket desde el registro de ventas');
+                window.location= 'ventasreg.php';
+                </script>";
             }
             
             //Credito
@@ -159,10 +143,7 @@ if(isset($_POST['save_order'])){
                 //Editar credito
                 $credito = "UPDATE clientescr SET restantecr ='$quitarR' WHERE nombrecr='$clientecr'";
                 
-                if(mysqli_query($conexion,$credito)){
-                    echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-                    Cliente actualizado</center></div></div>";
-                }
+                if(mysqli_query($conexion,$credito)){}
                 if(!mysqli_query($conexion,$credito)){echo"Error".mysqli_error($conexion);}
                 
                 //inserta en ventas registradas
@@ -170,9 +151,6 @@ if(isset($_POST['save_order'])){
                 VALUES('$cashier_name', '$order_date', '$order_time', '$total','$paid', '$due', '$clientecr')");
                 
                 if(!mysqli_query($conexion,$sql)){echo "Error: ".mysqli_error($conexion);}
-                
-                echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-                Venta registrada correctamente</center></div></div>";
                 
                 $invoice_id = mysqli_insert_id($conexion);
                 
@@ -190,10 +168,7 @@ if(isset($_POST['save_order'])){
                             $cambios ="UPDATE inventario SET existenciasi ='$rem_qty' 
                             WHERE id='".$arr_product_id[$i]."'";
                             
-                            if(mysqli_query($conexion,$cambios)){
-                                echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-                                Stock actualizado</center></div></div>";
-                            } 
+                            if(mysqli_query($conexion,$cambios)){} 
                             if(!mysqli_query($conexion,$cambios)){echo"Error".mysqli_error($conexion);}
                         }
                         
@@ -206,12 +181,12 @@ if(isset($_POST['save_order'])){
                         
                         if(!mysqli_query($conexion,$insert)){echo "Error: ".mysqli_error($conexion);}
                         
-                        echo "<div class='container'><br><div class='alert alert-success' role='alert'><center>
-                        Factura creada</center></div></div>";
-                        
                     }
                 }
-                //echo '<script>location.href="../includes/pdf/pdffactura.php";</script>';
+                echo "<script>
+                alert('Venta registrada, imprime el ticket desde el registro de ventas');
+                window.location= 'ventasreg.php';
+                </script>";
             }
         }
         

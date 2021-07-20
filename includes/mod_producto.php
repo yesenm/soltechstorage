@@ -115,7 +115,7 @@
                         ?>
                         <script>
                             setTimeout(() => {
-                                window.location= "../vistas/inventario.php";
+                                window.location= "../admin/inventario.php";
                             }, 3000);
                         </script>
                         <?php

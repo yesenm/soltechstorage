@@ -1,9 +1,8 @@
 <?php
-
-            $conexion = mysqli_connect("localhost","root","","soltech");
-            if(mysqli_connect_errno()){
-                echo "Fallo en la conexión. ".mysqli_connect_error();
-            }
+    $conexion = mysqli_connect("localhost","root","","soltech");
+    if(mysqli_connect_errno()){
+        echo "Fallo en la conexión. ".mysqli_connect_error();
+    }
 
         if(isset($_POST['nombrep'])){
             $nombre = $_POST['nombrep'];
@@ -101,7 +100,7 @@
                         ?>
                         <script>
                             setTimeout(() => {
-                                window.location= "../vistas/proveedores.php";
+                                window.location= "../admin/proveedores.php";
                             }, 3000);
                         </script>
                         <?php

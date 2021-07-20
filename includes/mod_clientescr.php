@@ -12,6 +12,7 @@
             $correo = $_POST['correocr'];
             $rfc = $_POST['rfccr'];
             $cantidad = $_POST['cantidadcr'];
+            $restante= $_POST['restantecr'];
             $fecha = $_POST['fechalicr'];
             
             $campos = array();
@@ -34,6 +35,10 @@
             
             if($rfc == ""){
                 array_push($campos, "El campo de RFC no puede ir vacío");
+            }
+
+            if($restante == ""){
+                array_push($campos, "Ingrese la cantidad restante");
             }
             
             if($cantidad == ""){
@@ -69,13 +74,14 @@
             }
             
             if($_SERVER["REQUEST_METHOD"]=="POST"){
-                $empresa=quitarEspacios($_POST["cantidadcr"]);
+                $cantidad=quitarEspacios($_POST["cantidadcr"]);
                 $nombre=quitarEspacios($_POST["nombrecr"]);
                 $telefono=quitarEspacios($_POST["telefonocr"]);
                 $direccion=quitarEspacios($_POST["direccioncr"]);
                 $correo=quitarEspacios($_POST["correocr"]);
                 $rfc=quitarEspacios($_POST["rfccr"]);
                 $productos=quitarEspacios($_POST["fechalicr"]);
+                $restante=quitarEspacios($_POST["restantecr"]);
             }
 
             if(isset($_REQUEST['editarclientcr'])){ 
@@ -86,12 +92,11 @@
                     $correo=$_REQUEST['correocr'];
                     $rfc=$_REQUEST['rfccr'];
                     $cantidad=$_REQUEST['cantidadcr'];
+                    $restante= $_REQUEST['restantecr'];
                     $fecha=$_REQUEST['fechalicr'];
-
-
     
                     $cambios ="update clientescr set nombrecr ='$nombre',telefonocr='$telefono', direccioncr='$direccion',
-                                correocr='$correo', rfccr='$rfc', cantidadcr='$cantidad', fechalicr='$fecha' where id='$id'";
+                                correocr='$correo', rfccr='$rfc', cantidadcr='$cantidad', restantecr='$restante', fechalicr='$fecha' where id='$id'";
     
                 if(mysqli_query($conexion,$cambios)){
                     echo "<br><div class='alert alert-success' role='alert'>
@@ -101,7 +106,7 @@
                         ?>
                         <script>
                             setTimeout(() => {
-                                window.location= "../vistas/clientescr.php";
+                                window.location= "../admin/clientescr.php";
                             }, 3000);
                         </script>
                         <?php

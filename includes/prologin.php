@@ -56,7 +56,7 @@
                         //Si las contraseñas coinciden, ingresa al sistema
                         ?>
                         <script>
-                            window.location="index.php";
+                            window.location="redireccionador.php";
                         </script>
                         <?php
                     }else{
