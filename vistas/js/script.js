@@ -1,53 +1,75 @@
 $(document).ready(function(){
+    //Crear el select de categoría que muestre las tablas con los codigos
+    $('#categoriai').change(function(){
+        $.ajax({
+            type:"POST",
+            url:"../datos.php",
+            data:"categoria=" + $('#categoriai').val(),
+            success:function(r){
+                ato=jQuery.parseJSON(JSON.stringify(r));
+                $('#codigos').html(r);
+            }
+        });
+    });
     
-    $(document).on('click','#btn_addOrder', function(){
-
+    
+    $(document).on('click','#btn_addOrder', function(e){
+        e.preventDefault();
         //Conseguir que los datos de la tabla "inventario" se agregen en los input según el select
-        $('.id_').change(function(){
-            var productid = this.value;
+        $('.codigoi_').keyup(function(e){
+            e.preventDefault();
+            var productcod = this.value;
+            var action = 'infoProducto';
             var tr=$(this).parent().parent();
             $.ajax({ 
                 type:"POST",
-                data:{id:productid},
+                data:{codigoi:productcod, action:action},
                 url:"../llenarFormProducto.php",
                 success:function(r){
+                    if(r == 0){
+                        //Si data, correspondiente al numero de filas es 0
+                        //quiere decir que no existe un producto con ese codigo
+                        //console.log("No existe un producto con este codigo");
+                    }else{
+                        //Si el data trae arreglo
                     dato=jQuery.parseJSON(r);
                     
                     tr.find('.quantity_product').removeAttr('disabled');
-
-                    tr.find(".codigoi_").val(dato["codigoi"]);
+                    
+                    tr.find(".id_").val(dato["id"]);
                     tr.find(".descripcioni_").val(dato["descripcioni"]);
                     tr.find(".existenciasi_").val(dato["existenciasi"]);
                     tr.find(".pnetoi_").val(dato["pnetoi"]);
-
+                    
                     tr.find(".quantity_product").val(0);
                     tr.find(".iva_product").val(0);
                     tr.find(".producttotal").val(0);
                     calculate(0,0);
+                    }
                 }
                 
             });
         });
         
-    //Calcular total de un solo select
+        //Calcular total de un solo select
         $('.quantity_product').keyup(function(e) {
             e.preventDefault();
             
             var tr=$(this).parent().parent();
-
+            
             //Calcula el precio x cantidad
             var precio_cant = tr.find(this).val() * tr.find('.pnetoi_').val();
             tr.find('.producttotal').val(precio_cant);
             calculate(0,0);
-
-            tr.find('.id_').change(function(e){
+            
+            tr.find('.codigoi_').keyup(function(e){
                 e.preventDefault();
                 
                 tr.find('.quantity_product').val(0);
                 tr.find('.iva_product').val(0);
                 tr.find('.producttotal').val(0);
                 tr.find("#paid").val(0);
-
+                
                 
             });
             //Existencia
@@ -65,7 +87,7 @@ $(document).ready(function(){
                 //Sacar el IVA
                 tr.find('.iva_product').keyup(function(e) {
                     e.preventDefault();
-
+                    
                     
                     var iva = tr.find('.iva_product').val()*0.01; //Iva se convierte a decimal
                     var ivadeprecio = tr.find('.pnetoi_').val() * iva; //Se saca cuanto es el Iva de cierto precio
@@ -74,14 +96,14 @@ $(document).ready(function(){
                     tr.find('.producttotal').val(total);
                     calculate(0,0);
                     
-                    tr.find('.id_').change(function(e){
+                    tr.find('.codigoi_').keyup(function(e){
                         e.preventDefault();
                         
                         tr.find('.quantity_product').val(0);
                         tr.find('.iva_product').val(0);
                         tr.find('.producttotal').val(0);
                         tr.find("#paid").val(0);
-
+                        
                         
                     });
                     
@@ -90,7 +112,7 @@ $(document).ready(function(){
                         
                         tr.find('.iva_product').val(0);
                         tr.find("#paid").val(0);
-
+                        
                     });
                     
                 });

@@ -1,6 +1,6 @@
 <?php
 
-    include("admin_menu.php");
+    include("usuario_menu.php");
 
     if(!$_SESSION["usuario_valido"]){
     ?>
@@ -353,7 +353,7 @@
   <!-- /.content-wrapper -->
   
   <?php
-    include("admin_footer.php");
+    include("usuario_footer.php");
   ?>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="../js/script.js"></script>

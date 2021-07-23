@@ -36,7 +36,7 @@
     }else if ($prueba == 2){
 ?>
     <script>
-            window.location= 'usuario/usuario.php';
+            window.location= 'usuario/u_ventas.php';
     </script>"
 <?php
     }

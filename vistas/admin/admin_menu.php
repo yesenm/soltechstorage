@@ -26,7 +26,7 @@
 ?>
         <script>
                 alert('Tu eres usuario, no puedes acceder al área de administradores');
-                window.location= '../usuario/usuario.php';
+                window.location= '../usuario/u_ventas.php';
         </script>";
 <?php
     }

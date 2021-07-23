@@ -1,4 +1,4 @@
-<?php include("admin_menu.php"); ?>
+<?php include("usuario_menu.php"); ?>
 <!doctype html>
 <html lang="es">
 <body>
@@ -72,7 +72,7 @@
     
     <!--Inicia Footer-->
 <?php
-    include("admin_footer.php");
+    include("usuario_footer.php");
 ?>
     <!--Finaliza Footer-->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

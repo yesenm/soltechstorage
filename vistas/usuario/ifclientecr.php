@@ -1,78 +1,76 @@
-<?php include("admin_menu.php"); ?>
+<?php
+include("usuario_menu.php");
+?>
 <!doctype html>
 <html lang="es">
 <body>
+    
     <br>
+    
     <!--Inicia Formulario-->
     <div class="container">
         <center>
-            <h4>Agrega un nuevo proveedor</h4>
-
-            <?php
-            //Insertar un registro
-                include("../../includes/proproveedores.php");
-            ?>
-            <br>
+        <h4>Agrega un nuevo cliente a crédito</h4>
+        <?php 
+            include("../../includes/proclientescr.php");
+        ?>
+        <br>
             <form id="PForm" class="rounded-3" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <fieldset>
                 <div class="row">
                     <div class="col-md-5">
                         <label>Nombre</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Nombre" name="nombrep" id="nombrep" value="<?php echo $nombrep;?>" class="rounded-3"/>
+                            <input type="text" class="form-control" placeholder="Nombre" class="rounded-3" name="nombrecr" value="<?php echo $nombrecr;?>">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <label>Teléfono</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Teléfono" name="telefonop" id="telefonop" value="<?php echo $telefonop;?>" class="rounded-3"/>
+                            <input type="text" class="form-control" placeholder="Teléfono" class="rounded-3" name="telefonocr" value="<?php echo $telefonocr;?>">
                         </div>
                     </div>
                     <div class="col-md-5">
                         <label>Dirección</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Dirección" name="direccionp" id="direccionp" value="<?php echo $direccionp;?>" class="rounded-3"/>
+                            <input type="text" class="form-control" placeholder="Dirección" class="rounded-3" name="direccioncr" value="<?php echo $direccioncr;?>">
                         </div>
                     </div>
                     <div class="col-md-6"><br>
                         <label>Correo</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Correo" name="correop" id="correop" value="<?php echo $correop;?>" class="rounded-3"/>
+                            <input type="text" class="form-control" placeholder="Correo" class="rounded-3" name="correocr" value="<?php echo $correocr;?>">
                         </div>
                     </div>
                     <div class="col-md-6"><br>
                         <label>RFC</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="RFC" name="rfcp" id="rfcp" value="<?php echo $rfcp;?>" class="rounded-3"/>
+                            <input type="text" class="form-control" placeholder="RFC" class="rounded-3" name="rfccr" value="<?php echo $rfccr;?>">
                         </div>
                     </div>
                     <div class="col-md-6"><br>
-                        <label>Productos</label>
+                        <label>Cantidad de crédito</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Productos proveídos" name="productosp" id="productosp" value="<?php echo $productosp;?>" class="rounded-3"/>
+                            <input type="text" class="form-control" placeholder="Cantidad de crédito" class="rounded-3" name="cantidadcr" value="<?php echo $cantidadcr;?>">
                         </div>
                     </div>
                     <div class="col-md-6"><br>
-                        <label>Empresa</label>
+                        <label>Fecha límite</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Empresa" name="empresap" id="empresap" value="<?php echo $empresap;?>" class="rounded-3"/>
+                            <input type="date" class="form-control" class="rounded-3" name="fechalicr" value="<?php echo $fechalicr;?>">
                         </div>
                     </div>
                     <div class="col-md-12"><br>
-                        <button type="submit" class="btn btn-primary" name="enviar" value="Enviar datos">Agregar proveedor</button>
-                        <a href="proveedores.php"><button type="button" class="btn btn-warning">Ir a proveedores</button></a>
+                        <button type="submit" class="btn btn-primary" name="registrar" value="Registrar datos">Agregar cliente a crédito</button>
+                        <a href="clientescr.php"><button class="btn btn-warning" type="button">Ir a la lista de clientes a crédito</button></a>
                     </div>
                 </div>
-                </fieldset>
             </form>
-        </center><br>
-    </div>
-    
-    <!--Finaliza Formulario-->
-    
+        </center>
+    </div><br>
+
     <!--Inicia Footer-->
 <?php
-    include("admin_footer.php");
+    include("usuario_footer.php");
 ?>
     <!--Finaliza Footer-->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
