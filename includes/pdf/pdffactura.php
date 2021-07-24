@@ -72,7 +72,6 @@ while($row = $resultado->fetch_assoc()){
     $pdf->Cell(10,4 ,$row['invoice_id'],0,1,'C');
     
     $pdf->Line(6,70,74,70);
-    $pdf->Line(6,71,74,71);
     
     //Tablaaaa
     $pdf->SetX(5);
@@ -94,14 +93,48 @@ while($row = $resultado->fetch_assoc()){
         //////////////////////////////////////////////
         
         $pdf->SetX(5);
-        $pdf->SetFont('Arial','',6);
-        $pdf->Cell(5,5,$item['cantidad'],0,0,'C', 0);
-        $pdf->Cell(35,5,$item['product_description'],0,0,'L', 0);
+        $pdf->SetFont('Arial','',5);
+        $pdf->SetDrawColor(229,229,229);
         
-        $pdf->Cell(10,5,''.number_format($item['precio'],2),0,0,'C', 0);
-        $pdf->Cell(10,5,''.number_format($item['iva'],2),0,0,'C', 0);
+        //multicell para decip
+        $cellWidth=35;
+        $cellHeight=4;
+        if($pdf->GetStringWidth($item['product_description'])<$cellWidth){
+            $line=1;
+        }else{
+            $textLength=strlen($item['product_description']);
+            $errMargin=4;
+            $startChar=0;
+            $maxChar=0;
+            $textArray=array();
+            $tmpString="";
+            while($startChar<$textLength){
+                while($pdf->GetStringWidth($tmpString) < ($cellWidth-$errMargin) &&
+                ($startChar+$maxChar) <  $textLength){
+                    $maxChar++;
+                    $tmpString=substr($item['product_description'], $startChar, $maxChar);
+                }
+                $startChar=$startChar+$maxChar;
+                array_push($textArray, $tmpString);
+                $maxChar=0;
+                $tmpString="";
+            }
+            $line=count($textArray);
+        }
         
-        $pdf->Cell(10,5,''.number_format($item['total'],2),0,1,'C', 0);
+        
+        $pdf->Cell(5,($line*$cellHeight),$item['cantidad'],1,0,'C', 0);
+        
+        $xPos = $pdf->GetX();
+        $yPos = $pdf->GetY();
+        $pdf->MultiCell($cellWidth,$cellHeight,$item['product_description'],1,'L', 0);
+        $pdf->SetXY($xPos + $cellWidth, $yPos);
+        
+        
+        $pdf->Cell(10,($line*$cellHeight),''.number_format($item['precio'],2),1,0,'C', 0);
+        $pdf->Cell(10,($line*$cellHeight),''.number_format($item['iva'],2),1,0,'C', 0);
+        
+        $pdf->Cell(10,($line*$cellHeight),''.number_format($item['total'],2),1,1,'C', 0);
         
     }
     

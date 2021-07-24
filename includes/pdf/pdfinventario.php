@@ -1,63 +1,63 @@
 <?php
-require('fpdf/fpdf.php');
-
-class PDF extends FPDF{
-// Cabecera de página
-function Header(){
-    // Arial bold 15
-    $this->SetFont('Arial','B',12);
-    // Movernos a la derecha
-    $this->Cell(50);
-    // Título
-    $this->Cell(90,10,'Reporte de Inventario',0,0,'C');
-    // Salto de línea
-    $this->Ln(15);
-    //cabecera de tabla
-    $this->Cell(10,10, 'Id',1,0,'C',0);
-    $this->Cell(22,10, utf8_decode('Código'),1,0,'C',0);
-    $this->Cell(60,10, utf8_decode('Descripción'),1,0,'C',0);
-    $this->Cell(25,10, 'Medidas',1,0,'C',0);
-    $this->Cell(15,10, '$M',1,0,'C',0);
-    $this->Cell(15,10, '$B',1,0,'C',0);
-    $this->Cell(15,10, '$N',1,0,'C',0);
-    $this->Cell(15,10, 'Ex',1,0,'C',0);
-    $this->Cell(30,10, 'Proveedor',1,0,'C',0);
-    $this->Cell(30,10, utf8_decode('Categoría'),1,1,'C',0);
+//Incluimos la bibioletca personalizada
+include ("pdf_mc_table.php");
+//Creamos un nuevo objeto
+$pdf = new PDF_MC_Table();
+//Añadimos pagina
+$pdf->AddPage();
 
     
-}
+    // Cabecera de página
+        $pdf->SetFont('Arial','B',12);
+        // Movernos a la derecha
+        $pdf->Cell(50);
+        // Título
+        $pdf->Cell(90,10,'Reporte de Inventario',0,0,'C');
+        // Salto de línea
+        $pdf->Ln(15);
+        //cabecera de tabla
+        $pdf->SetFont('Arial','B',10);
+        $pdf->SetDrawColor(120,120,120);
+        $pdf->Cell(10,10, 'Id',1,0,'C',0);
+        $pdf->Cell(18,10, utf8_decode('Código'),1,0,'C',0);
+        $pdf->Cell(40,10, utf8_decode('Descripción'),1,0,'C',0);
+        $pdf->Cell(25,10, 'Medidas',1,0,'C',0);
+        $pdf->Cell(12,10, '$M',1,0,'C',0);
+        $pdf->Cell(12,10, '$B',1,0,'C',0);
+        $pdf->Cell(12,10, '$N',1,0,'C',0);
+        $pdf->Cell(12,10, 'Ex',1,0,'C',0);
+        $pdf->Cell(30,10, 'Proveedor',1,0,'C',0);
+        $pdf->Cell(20,10, utf8_decode('Categoría'),1,1,'C',0);
 
-    // Pie de página
-    function Footer(){
-        // Posición: a 1,5 cm del final
-        $this->SetY(-15);
-        // Arial italic 8
-        $this->SetFont('Arial','I',8);
-        // Número de página
-        $this->Cell(0,10,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
-    }
-}
+    
 
+$pdf->SetFont('Arial', '', 7);
+$pdf->SetDrawColor(120,120,120);
+//Definimos el ancho de las columnas (10 columnas)
+$pdf->SetWidths(Array(10,18,40,25,12,12,12,12,30,20));
+//Definimos el alto de las columnas, pero referido a que cada renglon vale 6 puntos
+$pdf->SetLineHeight(5);
+//Nos conectamos a la base de datos y hacemos la consulta
 $mysqli = new mysqli("localhost","root","","soltech");
 $consulta = "SELECT * FROM inventario";
 $resultado = $mysqli -> query($consulta);
-
-$pdf = new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetFont('Arial','',11);
-while($row = $resultado->fetch_assoc()){
-    $pdf->Cell(10,10, $row['id'],1,0,'C',0);
-    $pdf->Cell(22,10, utf8_decode($row['codigoi']),1,0,'C',0);
-    $pdf->Cell(60,10, utf8_decode($row['descripcioni']),1,0,'C',0);
-    $pdf->Cell(25,10, utf8_decode($row['medidasi']),1,0,'C',0);
-    $pdf->Cell(15,10, utf8_decode($row['pmayoreoi']),1,0,'C',0);
-    $pdf->Cell(15,10, utf8_decode($row['pbrutoi']),1,0,'C',0);
-    $pdf->Cell(15,10, utf8_decode($row['pnetoi']),1,0,'C',0);
-    $pdf->Cell(15,10, utf8_decode($row['existenciasi']),1,0,'C',0);
-    $pdf->Cell(45,10, utf8_decode($row['proveedoresi']),1,0,'C',0);
-    $pdf->Cell(30,10, utf8_decode($row['categoriai']),1,1,'C',0);
+//Cargamos los datos
+while($item = $resultado->fetch_assoc()){
+    $pdf->Row(Array(
+        $item['id'],
+        utf8_decode($item['codigoi']),
+        utf8_decode($item['descripcioni']),
+        utf8_decode($item['medidasi']),
+        $item['pmayoreoi'],
+        $item['pbrutoi'],
+        $item['pnetoi'],
+        $item['existenciasi'],
+        utf8_decode($item['proveedoresi']),
+        utf8_decode($item['categoriai'])
+    ));
 }
 
+//Salida del pdf
 $pdf->Output();
+
 ?>
