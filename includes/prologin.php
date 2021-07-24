@@ -39,14 +39,10 @@
                 
                 $instruccion= "select nameuser, contrasena from vendedores where nameuser='$usuario'";
                 
-                $consulta = mysqli_query($conexion,$instruccion) or die
-                ("Fallo en la consulta...");
+                $consulta = mysqli_query($conexion,$instruccion) or die ("Fallo en la consulta...");
                 if(mysqli_num_rows(mysqli_query($conexion,$instruccion))>0){
                     
-                    if(!mysqli_query($conexion,$instruccion)){
-                        
-                        echo "Error ".mysqli_error($conexion);
-                    }
+                    if(!mysqli_query($conexion,$instruccion)){echo "Error ".mysqli_error($conexion);}
                     $resultado=mysqli_fetch_array($consulta);
                     
                     if(password_verify($contrasena,$resultado['contrasena'])){
@@ -64,6 +60,9 @@
                         echo "<div class='alert alert-danger' role='alert'>
                         El usuario y/o la contraseña son incorrectas</div>";
                     }
+                }else{
+                    echo "<div class='alert alert-danger' role='alert'>
+                        El usuario no existe</div>";
                 }
                 mysqli_close($conexion);
             }

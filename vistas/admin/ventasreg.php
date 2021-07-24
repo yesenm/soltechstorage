@@ -29,7 +29,9 @@
         if(isset($_REQUEST['eliminar'])){
             
             $id = $_REQUEST['eliminar'];
-            $sql = "DELETE FROM ventasregis WHERE invoice_id = $id";
+            $sql = "DELETE ven, fac FROM ventasregis AS ven INNER JOIN 
+            factura AS fac WHERE ven.invoice_id=fac.invoice_id 
+            AND ven.invoice_id LIKE $id";
 
             if($conect->query($sql) === true){
                 echo "<br><div class='alert alert-success' role='alert'>
@@ -92,8 +94,8 @@
                                 <td>$ <?php echo $row['total']; ?></td>
                                 <td>
                                     <a href="../../includes/pdf/pdffactura.php?id=<?php echo $row['invoice_id']; ?>" target="_blank" class="btn btn-info btn-sm"><i class="fa fa-print"></i></a>
-                                    <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="ventasreg.php">
-                                    <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm eliminar"><i class="fas fa-trash"></i></button></form>
+                                    <form method="POST" id="form_eliminar_<?php echo $row['invoice_id']; ?>" action="ventasreg.php">
+                                    <button type="submit" name="eliminar" value="<?php echo $row['invoice_id']; ?>" class="btn btn-danger btn-sm eliminar"><i class="fas fa-trash"></i></button></form>
                                 </td>
                                 </tr>
                             <?php } mysqli_free_result($resultado); ?>
