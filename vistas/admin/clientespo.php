@@ -88,11 +88,11 @@ include("admin_menu.php");
                                         <td> <?php echo $row['correopo']; ?></td>
                                         <td> <?php echo $row['rfcpo']; ?></td>
                                         <td> <?php echo $row['cantidadpo']; ?></td>
-                                        <td><?php echo
-                                            "<a href='formclipomod.php?id=".$row['id']."'><button type='button' class='btn btn-warning btn-sm'><i class='fas fa-edit'></i></button></a>" ?>
+                                        <td><div class="tdbutton"><?php echo
+                                            "<a href='formclipomod.php?id=".$row['id']."'><button type='button' class='btn btn-warning btn-sm btntd'><i class='fas fa-edit'></i></button></a>" ?>
                                             <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="clientespo.php">
-                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm eliminar"><i class="fas fa-trash"></i></button>
-                                        </form>
+                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm eliminar btntd"><i class="fas fa-trash"></i></button>
+                                        </form></div>
                                         </td>
                                         </tr>
                             <?php } mysqli_free_result($resultado); ?>

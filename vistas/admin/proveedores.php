@@ -86,11 +86,11 @@ include("admin_menu.php");
                                         <td> <?php echo $row['rfcp']; ?></td>
                                         <td> <?php echo $row['productosp']; ?></td>
                                         <td> <?php echo $row['empresap']; ?></td>
-                                        <td> <?php echo
-                                            "<a href='formprovmod.php?id=".$row['id']."'><button type='button' class='btn btn-sm btn-warning'><i class='fas fa-edit'></i></button></a>" ?>
+                                        <td> <div class="tdbutton"> <?php echo
+                                            "<a href='formprovmod.php?id=".$row['id']."'><button type='button' class='btn btn-sm btn-warning btntd'><i class='fas fa-edit'></i></button></a>" ?>
                                             <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="proveedores.php">
-                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-sm btn-danger eliminar"><i class="fas fa-trash"></i></button>
-                                        </form>
+                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-sm btn-danger eliminar btntd"><i class="fas fa-trash"></i></button>
+                                        </form></div>
                                         </td>
                                     </tr>
                             <?php } mysqli_free_result($resultado); ?>

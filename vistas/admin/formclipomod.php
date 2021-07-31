@@ -19,7 +19,8 @@ include("admin_menu.php");
             $row['telefonopo'],
             $row['direccionpo'],
             $row['correopo'],
-            $row['rfcpo']
+            $row['rfcpo'],
+            $row['cantidadpo']
         ];
     }
 ?>
@@ -58,21 +59,27 @@ include("admin_menu.php");
                             <input type="text" class="form-control" placeholder="Dirección" name="direccionpo" id="direccionpo" value="<?php echo $consulta[3];?>" class="rounded-3"/>
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-5"><br>
                         <label>Correo</label>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Correo" name="correopo" id="correopo" value="<?php echo $consulta[4];?>" class="rounded-3"/>
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-5"><br>
                         <label>RFC</label>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="RFC" name="rfcpo" id="rfcpo" value="<?php echo $consulta[5];?>" class="rounded-3"/>
                         </div>
                     </div>
+                    <div class="col-md-2"><br>
+                        <label>Compras</label>
+                        <div class="input-group">
+                            <input type="number" min="0" class="form-control" placeholder="Número de compras" name="cantidadpo" id="cantidadpo" value="<?php echo $consulta[6];?>" class="rounded-3"/>
+                        </div>
+                    </div>
                     <div class="col-md-12"><br>
                         <button type="submit" class="btn btn-primary" name="editarclip" value="editarclip">Editar cliente potencial</button>
-                       <a href="clientepo.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
+                       <a href="clientespo.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
                     </div>
                 </div>
             </fieldset>

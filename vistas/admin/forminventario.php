@@ -37,25 +37,25 @@ include("admin_menu.php");
                 <div class="col-md-3"><br>
                     <label>Precio por mayreo</label>
                     <div class="input-group">
-                        <input id="pmayoreoi" type="number" class="form-control" name="pmayoreoi" value="<?php echo $pmayoreoi; ?>" placeholder="Precio por mayoreo">
+                        <input id="pmayoreoi" type="number" min="0" class="form-control" name="pmayoreoi" value="<?php echo $pmayoreoi; ?>" placeholder="Precio por mayoreo">
                     </div>
                 </div>
                 <div class="col-md-3"><br>
                     <label>Precio bruto</label>
                     <div class="input-group">
-                        <input id="pbrutoi" type="number" class="form-control" name="pbrutoi" value="<?php echo $pbrutoi; ?>" placeholder="Precio bruto">
+                        <input id="pbrutoi" type="number" min="0" class="form-control" name="pbrutoi" value="<?php echo $pbrutoi; ?>" placeholder="Precio bruto">
                     </div>
                 </div>
                 <div class="col-md-3"><br>
                     <label>Precio neto</label>
                     <div class="input-group">
-                        <input id="pnetoi" type="number" class="form-control" name="pnetoi" value="<?php echo $pnetoi; ?>" placeholder="Precio neto">
+                        <input id="pnetoi" type="number" min="0" class="form-control" name="pnetoi" value="<?php echo $pnetoi; ?>" placeholder="Precio neto">
                     </div>
                 </div>
                 <div class="col-md-4"><br>
                     <label>Existencias</label>
                     <div class="input-group">
-                        <input id="pexistenciasi" type="number" class="form-control" name="existenciasi" value="<?php echo $existenciasi; ?>" placeholder="Existencias">
+                        <input id="pexistenciasi" type="number" min="0" class="form-control" name="existenciasi" value="<?php echo $existenciasi; ?>" placeholder="Existencias">
                     </div>
                 </div>
                 <div class="col-md-4"><br>

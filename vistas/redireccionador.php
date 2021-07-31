@@ -30,13 +30,13 @@
     if($prueba == 1){
 ?>
     <script>
-            window.location= 'admin/ventas.php';
+            window.location= 'admin/inicio.php';
     </script>"
 <?php
     }else if ($prueba == 2){
 ?>
     <script>
-            window.location= 'usuario/u_ventas.php';
+            window.location= 'usuario/u_inicio.php';
     </script>"
 <?php
     }

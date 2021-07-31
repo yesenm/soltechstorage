@@ -76,13 +76,13 @@
                     <div class="col-md-4"><br>
                         <label>Cantidad de crédito</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Cantidad de crédito" name="cantidadcr" id="cantidadcr" value="<?php echo $consulta[6];?>" class="rounded-3"/>
+                            <input type="number" min="0" class="form-control" placeholder="Cantidad de crédito" name="cantidadcr" id="cantidadcr" value="<?php echo $consulta[6];?>" class="rounded-3"/>
                         </div>
                     </div>
                     <div class="col-md-4"><br>
                         <label>Cantidad de restante</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Cantidad restante" name="restantecr" id="restantecr" value="<?php echo $consulta[7];?>" class="rounded-3"/>
+                            <input type="number" min="0" class="form-control" placeholder="Cantidad restante" name="restantecr" id="restantecr" value="<?php echo $consulta[7];?>" class="rounded-3"/>
                         </div>
                     </div>
                     <div class="col-md-4"><br>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-md-12"><br>
                         <button type="submit" class="btn btn-primary" name="editarclientcr" value="editarclientcr">Editar cliente</button>
-                        <a href="clientecr.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
+                        <a href="clientescr.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
                     </div>
                 </div>
             </fieldset>

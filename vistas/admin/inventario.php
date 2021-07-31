@@ -96,10 +96,11 @@ include("admin_menu.php");
                                 <td> <?php echo $row['existenciasi']; ?></td>
                                 <td> <?php echo $row['proveedoresi']; ?></td>
                                 <td> <?php echo $row['categoriai']; ?></td>
-                                <td><?php echo
-                                    "<a href='forminventariomod.php?id=".$row['id']."'><button type='button' class='btn btn-sm btn-warning'><i class='fas fa-edit'></i></button></a>" ?>
+                                <td> <div class="tdbutton"><?php echo
+                                    "<a href='forminventariomod.php?id=".$row['id']."'><button type='button' class='btn btn-sm btn-warning btntd'><i class='fas fa-edit'></i></button></a>" ?>
                                     <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="inventario.php">
-                                    <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm eliminar"><i class="fas fa-trash"></i></button></form>
+                                    <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm eliminar btntd"><i class="fas fa-trash"></i></button></form>
+                                </div>
                                 </td>
                             </tr>
                     <?php } mysqli_free_result($resultado); ?>

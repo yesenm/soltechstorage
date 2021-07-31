@@ -11,6 +11,7 @@
             $direccion = $_POST['direccionpo'];
             $correo = $_POST['correopo'];
             $rfc = $_POST['rfcpo'];
+            $compras = $_POST['cantidadpo'];
             
             $campos = array();
             
@@ -32,6 +33,9 @@
             
             if($rfc == ""){
                 array_push($campos, "El campo de RFC no puede ir vacío");
+            }
+            if($compras == ""){
+                array_push($campos, "El campo de compras no puede ir vacío");
             }
             
             if(count($campos) > 0){
@@ -64,6 +68,7 @@
                 $direccion=quitarEspacios($_POST["direccionpo"]);
                 $correo=quitarEspacios($_POST["correopo"]);
                 $rfc=quitarEspacios($_POST["rfcpo"]);
+                $compras=quitarEspacios($_POST["cantidadpo"]);
             }
 
             if(isset($_REQUEST['editarclip'])){ 
@@ -73,11 +78,12 @@
                     $direccion=$_REQUEST['direccionpo'];
                     $correo=$_REQUEST['correopo'];
                     $rfc=$_REQUEST['rfcpo'];
+                    $compras=$_REQUEST['cantidadpo'];
 
 
     
                     $cambios ="update clientespo set nombrepo ='$nombre',telefonopo='$telefono', direccionpo='$direccion',
-                                correopo='$correo', rfcpo='$rfc' where id='$id'";
+                                correopo='$correo', rfcpo='$rfc', cantidadpo='$compras' where id='$id'";
     
                 if(mysqli_query($conexion,$cambios)){
                     echo "<br><div class='alert alert-success' role='alert'>

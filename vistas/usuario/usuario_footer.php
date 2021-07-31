@@ -2,8 +2,25 @@
  <body>
  <!--Inicia Footer-->
  <br><br>
+ <?php
+ function fecha(){
+    $mes = array("","Enero",
+                  "Febrero",
+                  "Marzo",
+                  "Abril",
+                  "Mayo",
+                  "Junio",
+                  "Julio",
+                  "Agosto",
+                  "Septiembre",
+                  "Octubre",
+                  "Noviembre",
+                  "Diciembre");
+    return date('d')." de ". $mes[date('n')] . " de " . date('Y');
+}
+ ?>
     <footer style="background-color: #7ad2ae;">
-        <h3>©SOLTECH</h3>
+        <h5><?php echo fecha(); ?> ©SOLTECH</h5>
     </footer>
     <!--Finaliza Footer-->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

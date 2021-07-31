@@ -148,4 +148,12 @@ nav{
 
 td{
     font-size: 14px;
+    font-family: 'Itim', cursive;
+}
+
+.tdbutton{
+    display: flex;
+}
+.btntd{
+    flex: 2;
 }

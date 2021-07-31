@@ -50,7 +50,7 @@ include("usuario_menu.php");
                     <div class="col-md-6"><br>
                         <label>Cantidad de crédito</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Cantidad de crédito" class="rounded-3" name="cantidadcr" value="<?php echo $cantidadcr;?>">
+                            <input type="number" min="0" class="form-control" placeholder="Cantidad de crédito" class="rounded-3" name="cantidadcr" value="<?php echo $cantidadcr;?>">
                         </div>
                     </div>
                     <div class="col-md-6"><br>

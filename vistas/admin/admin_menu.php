@@ -50,13 +50,17 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     
 </head>
 <body>
     <!--Inicia Nabvar-->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #7ad2ae;">
         <div class="container-fluid">
-            <a href=""><img src="../../img/logo1.png" id="logo"></a>
+            <a href="inicio.php"><img src="../../img/logo1.png" id="logo"></a>
             <div class="container col-6"></div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

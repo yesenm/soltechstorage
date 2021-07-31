@@ -28,6 +28,55 @@
             $row['categoriai']
         ];
     }
+
+    $categoria = $consulta[9];
+
+    if($categoria == "Accesorios"){
+        $selectcat = 1;
+    }else if($categoria == "Aspersores"){
+        $selectcat = 2;
+    }else if($categoria == "CED. 40"){
+        $selectcat = 3;
+    }else if($categoria == "CED. 80"){
+        $selectcat = 4;
+    }else if($categoria == "Compuerta"){
+        $selectcat = 5;
+    }else if($categoria == "Conex. Aluminio"){
+        $selectcat = 6;
+    }else if($categoria == "Conex. Regantes"){
+        $selectcat = 7;
+    }else if($categoria == "Combustibles"){
+        $selectcat = 8;
+    }else if($categoria == "Fertiriego"){
+        $selectcat = 9;
+    }else if($categoria == "Filtración"){
+        $selectcat = 10;
+    }else if($categoria == "Galvanizados"){
+        $selectcat = 11;
+    }else if($categoria == "Geomembrana"){
+        $selectcat = 12;
+    }else if($categoria == "Medidores"){
+        $selectcat = 13;
+    }else if($categoria == "Micro y Goteo"){
+        $selectcat = 14;
+    }else if($categoria == "Paneles"){
+        $selectcat = 15;
+    }else if($categoria == "Pzas Taller"){
+        $selectcat = 16;
+    }else if($categoria == "Equipos Mecanizados"){
+        $selectcat = 17;
+    }else if($categoria == "PEBD"){
+        $selectcat = 18;
+    }else if($categoria == "Bombeo"){
+        $selectcat = 19;
+    }else if($categoria == "Tuberías"){
+        $selectcat = 20;
+    }else if($categoria == "LAY FLAT"){
+        $selectcat = 21;
+    }else if($categoria == "Válvulas"){
+        $selectcat = 22;
+    }
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -66,77 +115,59 @@
                     <div class="col-md-3"><br>
                         <label>Precio por mayreo</label>
                         <div class="input-group">
-                            <input id="pmayoreoi" type="number" class="form-control" name="pmayoreoi" value="<?php echo $consulta[4]; ?>" placeholder="Escribe el precio por mayoreo">
+                            <input id="pmayoreoi" type="number" min="0" class="form-control" name="pmayoreoi" value="<?php echo $consulta[4]; ?>" placeholder="Escribe el precio por mayoreo">
                         </div>
                     </div>
                     <div class="col-md-3"><br>
                         <label>Precio bruto</label>
                         <div class="input-group">
-                            <input id="pbrutoi" type="number" class="form-control" name="pbrutoi" value="<?php echo $consulta[5]; ?>" placeholder="Escribe el precio bruto">
+                            <input id="pbrutoi" type="number" min="0" class="form-control" name="pbrutoi" value="<?php echo $consulta[5]; ?>" placeholder="Escribe el precio bruto">
                         </div>
                     </div>
                     <div class="col-md-3"><br>
                         <label>Precio neto</label>
                         <div class="input-group">
-                            <input id="pnetoi" type="number" class="form-control" name="pnetoi" value="<?php echo $consulta[6]; ?>" placeholder="Ingresa el precio neto">
+                            <input id="pnetoi" type="number" min="0" class="form-control" name="pnetoi" value="<?php echo $consulta[6]; ?>" placeholder="Ingresa el precio neto">
                         </div>
                     </div>
                     <div class="col-md-4"><br>
                         <label>Existencias</label>
                         <div class="input-group">
-                            <input id="pexistenciasi" type="number" class="form-control" name="existenciasi" value="<?php echo $consulta[7]; ?>" placeholder="Ingresa la cantidad de existencias">
+                            <input id="pexistenciasi" type="number" min="0" class="form-control" name="existenciasi" value="<?php echo $consulta[7]; ?>" placeholder="Ingresa la cantidad de existencias">
                         </div>
                     </div>
-                    <div id="proveedores"class="col-md-4"><br>
-                        <label>Elige el proveedor</label>
+                    <div class="col-md-4"><br>
+                        <label>Proveedor</label>
                         <div class="input-group">
-                        <select class="form-select" name="proveedoresi" id="proveedoresi">
-                        
-                        <?php
-                            //Conexión con la base de datos
-                            $conexion = mysqli_connect("localhost","root","","soltech");
-                            if(mysqli_connect_errno()){
-                                echo "Fallo en la conexión. ".mysqli_connect_error();
-                            }
-
-                            //Consulta
-                            $consulta ="SELECT * FROM proveedores";
-                            $ejecutar = mysqli_query($conexion, $consulta) or die (mysqli_error($conexion));
-                        ?>
-                        <?php foreach ($ejecutar as $opciones):?>
-                        
-                        <option value="<?php echo $opciones['nombrep']; ?>"><?php echo $opciones['nombrep']; ?></option>
-                        
-                        <?php endforeach ?>
-                        </select>
+                            <input id="proveedoresi" type="text" class="form-control" name="proveedoresi" value="<?php echo $consulta[8]; ?>" placeholder="Ingresa el nombre del proveedor">
                         </div>
                     </div>
                     <div class="col-md-4"><br>
                     <label class="form-label">Categoría</label>
                     <div class="input-group">
                     <select class="form-select" name="categoriai" id="categoriai">
-                        <option value="Accesorios" <?php if($consulta[9] == "Accesorios") echo "selected"; ?>>Accesorios</option>
-                        <option value="Aspersores" <?php if($consulta[9] == "Aspersores") echo "selected"; ?>>Aspersores</option>
-                        <option value="CED. 40" <?php if($consulta[9] == "CED. 40") echo "selected"; ?>>CED. 40</option>
-                        <option value="CED. 80" <?php if($consulta[9] == "CED. 80") echo "selected"; ?>>CED. 80</option>
-                        <option value="Compuerta" <?php if($consulta[9] == "Compuerta") echo "selected"; ?>>Compuerta</option>
-                        <option value="Conex. Aluminio" <?php if($consulta[9] == "Conex. Aluminio") echo "selected"; ?>>Conex. Aluminio</option>
-                        <option value="Conex. Regantes" <?php if($consulta[9] == "Conex. Regantes") echo "selected"; ?>>Conex. Regantes</option>
-                        <option value="Combustibles" <?php if($consulta[9] == "Combustibles") echo "selected"; ?>>Combustibles</option>
-                        <option value="Fertiriego" <?php if($consulta[9] == "Fertiriego") echo "selected"; ?>>Fertiriego</option>
-                        <option value="Filtración" <?php if($consulta[9] == "Filtración") echo "selected"; ?>>Filtración</option>
-                        <option value="Galvanizados" <?php if($consulta[9] == "Galvanizados") echo "selected"; ?>>Galvanizados</option>
-                        <option value="Geomembrana" <?php if($consulta[9] == "Geomembrana") echo "selected"; ?>>Geomembrana</option>
-                        <option value="Medidores" <?php if($consulta[9] == "Medidores") echo "selected"; ?>>Medidores</option>
-                        <option value="Micro y Goteo" <?php if($consulta[9] == "Micro y Goteo") echo "selected"; ?>>Micro y Goteo</option>
-                        <option value="Paneles" <?php if($consulta[9] == "Paneles") echo "selected"; ?>>Paneles</option>
-                        <option value="Pzas Taller" <?php if($consulta[9] == "Pzas Taller") echo "selected"; ?>>Pzas Taller</option>
-                        <option value="Equipos Mecanizados" <?php if($consulta[9] == "Equipos Mecanizados") echo "selected"; ?>>Equipos Mecanizados</option>
-                        <option value="PEBD" <?php if($consulta[9] == "PEBD") echo "selected"; ?>>PEBD</option>
-                        <option value="Bombeo" <?php if($consulta[9] == "Bombeo") echo "selected"; ?>>Bombeo</option>
-                        <option value="Tuberías" <?php if($consulta[9] == "Tuberías") echo "selected"; ?>>Tuberías</option>
-                        <option value="LAY FLAT" <?php if($consulta[9] == "LAY FLAT") echo "selected"; ?>>LAY FLAT</option>
-                        <option value="Válvulas" <?php if($consulta[9] == "Válvulas") echo "selected"; ?>>Válvulas</option>
+                        <option value="Accesorios" <?php if($selectcat == 1){ ?> selected <?php }?>>Accesorios</option>
+                        <option value="Aspersores" <?php if($selectcat == 2){ ?> selected<?php } ?>>Aspersores</option>
+                        <option value="CED. 40" <?php if($selectcat == 3) { ?> selected<?php }?>>CED. 40</option>
+                        <option value="CED. 80" <?php if($selectcat == 4) { ?> selected<?php } ?>>CED. 80</option>
+                        <option value="Compuerta" <?php if($selectcat == 5) { ?> selected<?php } ?>>Compuerta</option>
+                        <option value="Conex. Aluminio" <?php if($selectcat == 6) { ?> selected<?php } ?>>Conex. Aluminio</option>
+                        <option value="Conex. Regantes" <?php if($selectcat == 7){ ?> selected<?php } ?>>Conex. Regantes</option>
+                        <option value="Combustibles" <?php if($selectcat == 8) { ?> selected<?php } ?>>Combustibles</option>
+                        <option value="Fertiriego" <?php if($selectcat == 9) { ?> selected<?php } ?>>Fertiriego</option>
+                        <option value="Filtración" <?php if($selectcat == 10) { ?> selected<?php } ?>>Filtración</option>
+                        <option value="Galvanizados" <?php if($selectcat == 11) { ?> selected<?php } ?>>Galvanizados</option>
+                        <option value="Geomembrana" <?php if($selectcat == 12) { ?> selected<?php } ?>>Geomembrana</option>
+                        <option value="Medidores" <?php if($selectcat == 13) { ?> selected<?php } ?>>Medidores</option>
+                        <option value="Micro y Goteo" <?php if($selectcat == 14) { ?> selected<?php } ?>>Micro y Goteo</option>
+                        <option value="Paneles" <?php if($selectcat == 15) { ?> selected<?php } ?>>Paneles</option>
+                        <option value="Pzas Taller" <?php if($selectcat == 16) { ?> selected<?php } ?>>Pzas Taller</option>
+                        <option value="Equipos Mecanizados" <?php if($selectcat == 17) { ?> selected<?php } ?>>Equipos Mecanizados</option>
+                        <option value="PEBD" <?php if($selectcat == 18) { ?> selected<?php } ?>>PEBD</option>
+                        <option value="Bombeo" <?php if($selectcat == 19) { ?> selected<?php } ?>>Bombeo</option>
+                        <option value="Tuberías" <?php if($selectcat == 20) { ?> selected<?php } ?>>Tuberías</option>
+                        <option value="LAY FLAT" <?php if($selectcat == 21) { ?> selected<?php } ?>>LAY FLAT</option>
+                        <option value="Válvulas" <?php if($selectcat == 22) { ?> selected<?php } ?>>Válvulas</option>
                     </select>
                     </div>
                     </div>

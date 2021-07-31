@@ -43,7 +43,7 @@
                     <div class="col-md-6"><br>
                         <label>Concepto cantidad</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" name="cantidad" value="<?php echo $cantidad; ?>" placeholder="Ingresa la cantidad gastada">
+                            <input type="number" min="0" class="form-control" name="cantidad" value="<?php echo $cantidad; ?>" placeholder="Ingresa la cantidad gastada">
                         </div>
                     </div>
                     <center>

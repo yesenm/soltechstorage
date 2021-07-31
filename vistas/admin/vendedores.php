@@ -90,13 +90,15 @@ include("admin_menu.php");
                                         echo "Vendedor";
                                     }
                             ?></td>
-                            <td> <?php echo
-                                "<a href='formvenmod.php?id=".$row['id']."'><button type='button' class='btn btn-sm btn-warning'><i class='fas fa-edit'></i></button></a>";
-                                echo "<a href='cambiarpassword.php?id=".$row['id']."'><button type='button' class='btn btn-sm btn-info'><i class='fas fa-key'></i></button></a>";
+                            <td>
+                                <div class="tdbutton"> <?php echo
+                                "<a href='formvenmod.php?id=".$row['id']."'><button type='button' class='btn btn-sm btn-warning btntd'><i class='fas fa-edit'></i></button></a>";
+                                echo "<a href='cambiarpassword.php?id=".$row['id']."'><button type='button' class='btn btn-sm btn-info btntd'><i class='fas fa-key'></i></button></a>";
                                 ?>
                                 <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="vendedores.php">
-                                <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm eliminar"><i class="fas fa-trash"></i></button>
+                                <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm eliminar btntd"><i class="fas fa-trash"></i></button>
                             </form>
+                                </div>
                             </td>
                             </tr>
                         <?php } mysqli_free_result($resultado); ?>

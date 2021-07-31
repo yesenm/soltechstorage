@@ -86,11 +86,12 @@ include("admin_menu.php");
                                         <td>$ <?php echo $row['restantecr']; ?></td>
                                         <td> <?php echo $row['fechaprcr']; ?></td>
                                         <td> <?php echo $row['fechalicr']; ?></td>
-                                        <td> <?php echo
-                                            "<a href='formclientcrmod.php?id=".$row['id']."'><button type='button' class='btn btn-warning btn-sm'><i class='fas fa-edit'></i></button></a>" ?>
+                                        <td><div class="tdbutton"> <?php echo
+                                            "<a href='formclientcrmod.php?id=".$row['id']."'><button type='button' class='btn btn-warning btn-sm btntd'><i class='fas fa-edit'></i></button></a>" ?>
                                             <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="clientescr.php">
-                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm eliminar"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm eliminar btntd"><i class="fas fa-trash"></i></button>
                                         </form>
+                                    </div>
                                         </td>
                                         </tr>
                                     <?php } mysqli_free_result($resultado); ?>

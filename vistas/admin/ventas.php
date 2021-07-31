@@ -96,7 +96,7 @@
                             input1+='<div class="row" >'
                             input1+='<div class="col-md-9">';
                             input1+='<h2>Escribe el nombre del cliente</h2>'
-                            input1+='<input type="text" class="form-control" name="clienteev" id="clienteev">';
+                            input1+='<input type="text" class="form-control" name="clienteev" id="clienteev" required>';
                             input1+='</div>';
                             input1+='<div class="col-md-3">';
                             input1+='<br><br>';
@@ -324,7 +324,7 @@
                     <div class="input-group-addon">
                       <span>MXN</span>
                     </div>
-                    <input type="text" class="form-control pull-right" name="paid" id="paid" required>
+                    <input type="number" min="1" class="form-control pull-right" name="paid" id="paid" required>
                   </div>
                   <!-- /.input group -->
                 </div>

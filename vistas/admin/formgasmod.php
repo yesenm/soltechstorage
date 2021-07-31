@@ -65,13 +65,13 @@
                     <div class="col-md-6"><br>
                         <label>Concepto cantidad</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="cantidad" name="cantidad" value="<?php echo $consulta[5];?>" placeholder="Ingresa la cantidad gastada">
+                            <input type="number" min="0" class="form-control" id="cantidad" name="cantidad" value="<?php echo $consulta[5];?>" placeholder="Ingresa la cantidad gastada">
                         </div>
                     </div>
                     <center>
                     <div class="col-md-12"><br><br>
                         <button type="submit" class="btn btn-primary" name="editarGasto" value="editarGasto">Editar gasto</button>
-                        <a href="gasto.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
+                        <a href="gastos.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
                     </div>
                 </div>
             </form>

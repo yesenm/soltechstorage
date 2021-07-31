@@ -82,9 +82,11 @@ include("admin_menu.php");
                     </div>
                     <div class="col-md-12"><br>
                         <label>Elige el rol del usuario:</label>
-                        <h6>Escribe un "1" para que el usuario sea Administrador, escribe un "2" para que sea Vendedor</h6>
                         <div class="input-group">
-                            <input type="number" min="1" max="2" class="form-control" placeholder="Escribe un 1 o un 2 del para identificar el rol del usuario" name="id_rol" id="id_rol" value="<?php echo $consulta[8];?>" />
+                            <select name="id_rol" id="id_rol" class="form-control">
+                                <option value="1" <?php if($consulta[8]==1){ ?> selected<?php } ?>>Administrador</option>
+                                <option value="2" <?php if($consulta[8]==2){ ?> selected<?php } ?>>Vendedor</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-12"><br>
@@ -94,7 +96,7 @@ include("admin_menu.php");
                 </div>
             </fieldset>
 		</form>
-        
+        <br>
 </div>
 </center>
             
