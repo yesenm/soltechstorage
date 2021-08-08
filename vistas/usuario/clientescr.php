@@ -9,8 +9,16 @@ include("usuario_menu.php");
     <div class="container">
         <center>
     <form id="BPForm" class="rounded-3 form_search">
-        <label>Registrar un crédito:</label>
-        <a href="ifclientecr.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Registrar un crédito:</label>
+                <a href="ifclientecr.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
+            </div>
+            <div class="col-md-6">
+                <label>Ver tabla completa:</label>
+                <a href="clientescr_mas.php"><button style="background-color:#d0a9eb;" class="btn" type="button"><i class="fas fa-table"></i></button></a>
+            </div>
+        </div> 
     </form> 
             
         <div class="mb-3"><br>
@@ -24,13 +32,9 @@ include("usuario_menu.php");
                                 <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Telefono</th>
-                                <th scope="col">Dirección</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">RFC</th>
                                 <th scope="col">Crédito</th>
                                 <th scope="col">Restante</th>
-                                <th scope="col" style="width:200px;">Fecha de préstamo</th>
-                                <th>Fecha límite</th>
+                                <th scope="col">Fecha límite</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,12 +53,8 @@ include("usuario_menu.php");
                                         <th> <?php echo $row['id']; ?></th>
                                         <td> <?php echo $row['nombrecr']; ?></td>
                                         <td> <?php echo $row['telefonocr']; ?></td>
-                                        <td> <?php echo $row['direccioncr']; ?></td>
-                                        <td> <?php echo $row['correocr']; ?></td>
-                                        <td> <?php echo $row['rfccr']; ?></td>
                                         <td>$ <?php echo $row['cantidadcr']; ?></td>
                                         <td>$ <?php echo $row['restantecr']; ?></td>
-                                        <td> <?php echo $row['fechaprcr']; ?></td>
                                         <td> <?php echo $row['fechalicr']; ?></td>
                                         </tr>
                                     <?php } mysqli_free_result($resultado); ?>

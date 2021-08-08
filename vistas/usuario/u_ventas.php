@@ -341,6 +341,19 @@
               </div>
             </div>
 
+            <div class="col-md-5">
+              <div class="input-group">
+              <label>¿El cliente requiere factura?</label>
+              
+              <select style="margin-left: 10px;" name="reqfac" id="reqfac" class="form-control" required>
+                <option value="">Selecciona</option>
+                <option value="0">No</option>
+                <option value="1">Si</option>
+              </select>
+              
+            </div><br>
+            </div>
+
             <div class="box-footer" align="center">
               <input type="submit" name="save_order" value="Cobrar venta" class="btn btn-primary">
               <a href="ventasreg.php" class="btn btn-warning">Ver la lista de Ventas registradas</a>

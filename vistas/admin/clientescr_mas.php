@@ -44,8 +44,8 @@ include("admin_menu.php");
                 <a href="ifclientecr.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
             </div>
             <div class="col-md-6">
-                <label>Ver tabla completa:</label>
-                <a href="clientescr_mas.php"><button style="background-color:#d0a9eb;" class="btn" type="button"><i class="fas fa-table"></i></button></a>
+                <label>Ver resumen de tabla:</label>
+                <a href="clientescr.php"><button style="background-color:#d0a9eb;" class="btn" type="button"><i class="fas fa-table"></i></button></a>
             </div>
         </div>
     </form> 
@@ -61,8 +61,12 @@ include("admin_menu.php");
                                 <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Telefono</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">RFC</th>
                                 <th scope="col">Crédito</th>
                                 <th scope="col">Restante</th>
+                                <th scope="col">Fecha de préstamo</th>
                                 <th scope="col">Fecha límite</th>
                                 <th scope="col">Opciones</th>
                             </tr>
@@ -83,8 +87,12 @@ include("admin_menu.php");
                                         <th> <?php echo $row['id']; ?></th>
                                         <td> <?php echo $row['nombrecr']; ?></td>
                                         <td> <?php echo $row['telefonocr']; ?></td>
+                                        <td> <?php echo $row['direccioncr']; ?></td>
+                                        <td> <?php echo $row['correocr']; ?></td>
+                                        <td> <?php echo $row['rfccr']; ?></td>
                                         <td>$ <?php echo $row['cantidadcr']; ?></td>
                                         <td>$ <?php echo $row['restantecr']; ?></td>
+                                        <td> <?php echo $row['fechaprcr']; ?></td>
                                         <td> <?php echo $row['fechalicr']; ?></td>
                                         <td><div class="tdbutton"> <?php echo
                                             "<a href='formclientcrmod.php?id=".$row['id']."'><button type='button' class='btn btn-warning btn-sm btntd'><i class='fas fa-edit'></i></button></a>" ?>

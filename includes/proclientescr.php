@@ -7,6 +7,7 @@
     $correocr="";
     $rfccr="";
     $cantidadcr="";
+    $fechaprcr="";
     $fechalicr="";
 
     //Validar que los campos sean llenados.
@@ -18,6 +19,7 @@
         $correocr = $_POST['correocr'];
         $rfccr = $_POST['rfccr'];
         $cantidadcr = $_POST['cantidadcr'];
+        $fechaprcr = $_POST['fechaprcr'];
         $fechalicr = $_POST['fechalicr'];
         
         $campos = array();
@@ -82,7 +84,9 @@
                 $correocr=quitarEspacios($_POST["correocr"]);
                 $rfccr=quitarEspacios($_POST["rfccr"]);
                 $cantidadcr=quitarEspacios($_POST["cantidadcr"]);
+                $fechaprcr=quitarEspacios($_POST["fechaprcr"]);
                 $fechalicr=quitarEspacios($_POST["fechalicr"]);
+
             }
             //Inserta los datos en la base de datos y compara si ya existe el cliente ya existe con ese nombre
             if(isset($_REQUEST['registrar'])){
@@ -96,9 +100,9 @@
 
                 if(mysqli_num_rows(mysqli_query($conexion,$instruccion))<=0){
                     $insert = ("insert into clientescr(nombrecr, telefonocr, direccioncr, correocr,
-                    rfccr, cantidadcr, restantecr, fechalicr)
+                    rfccr, cantidadcr, restantecr, fechaprcr, fechalicr)
                     values('$nombrecr', '$telefonocr', '$direccioncr', '$correocr', 
-                    '$rfccr', '$cantidadcr', '$cantidadcr','$fechalicr')");
+                    '$rfccr', '$cantidadcr', '$cantidadcr', '$fechaprcr', '$fechalicr')");
                     
                     if(!mysqli_query($conexion,$insert)){
                         echo "Error: ".mysqli_error($conexion);

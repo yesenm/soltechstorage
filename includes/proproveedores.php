@@ -8,6 +8,7 @@ $correop="";
 $rfcp="";
 $productosp="";
 $empresap="";
+$fechap="";
 
 //Validar que los campos sean llenados.
 
@@ -19,6 +20,7 @@ if(isset($_POST['nombrep'])){
     $rfcp = $_POST['rfcp'];
     $productosp = $_POST['productosp'];
     $empresap = $_POST['empresap'];
+    $fechap = $_POST['fechap'];
     
     $campos = array();
     
@@ -83,6 +85,7 @@ if(isset($_POST['nombrep'])){
             $correop=quitarEspacios($_POST["correop"]);
             $rfcp=quitarEspacios($_POST["rfcp"]);
             $productosp=quitarEspacios($_POST["productosp"]);
+            $fechap=quitarEspacios($_POST["fechap"]);
         }
         //Inserta los datos en la base de datos y compara si ya existe el usuario con ese nombre
         if(isset($_REQUEST['enviar'])){
@@ -95,9 +98,9 @@ if(isset($_POST['nombrep'])){
             $instruccion ="select nombrep from proveedores where nombrep ='$nombrep'";
             if(mysqli_num_rows(mysqli_query($conexion,$instruccion))<=0){
                 $insert = ("insert into proveedores(nombrep, telefonop, direccionp, correop,
-                rfcp, productosp, empresap)
+                rfcp, productosp, empresap, fechap)
                 values('$nombrep', '$telefonop', '$direccionp', '$correop', 
-                '$rfcp', '$productosp', '$empresap')");
+                '$rfcp', '$productosp', '$empresap', '$fechap' )");
                 
                 if(!mysqli_query($conexion,$insert)){
                     echo "Error: ".mysqli_error($conexion);

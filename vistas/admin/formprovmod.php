@@ -21,7 +21,8 @@
             $row['correop'],
             $row['rfcp'],
             $row['productosp'],
-            $row['empresap']
+            $row['empresap'],
+            $row['fechap']
         ];
     }
 ?>
@@ -59,18 +60,22 @@
                         <input type="text" class="form-control" placeholder="Dirección" name="direccionp" id="direccionp" value="<?php echo $consulta[3];?>" class="rounded-3"/>
                     </div>
                 </div>
-                <div class="col-md-6"><br>
+                <div class="col-md-5"><br>
                     <label>Correo</label>
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Correo" name="correop" id="correop" value="<?php echo $consulta[4];?>" class="rounded-3"/>
                     </div>
                 </div>
-                <div class="col-md-6"><br>
+                <div class="col-md-4"><br>
                     <label>RFC</label>
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="RFC" name="rfcp" id="rfcp" value="<?php echo $consulta[5];?>" class="rounded-3"/>
                     </div>
                 </div>
+                <div class="col-md-3"><br>
+                        <label>Fecha</label>
+                        <input type="date" class="form-control" name="fechap" id="fechap" value="<?php echo $consulta[8];?>" class="rounded-3"/>
+                    </div>
                 <div class="col-md-6"><br>
                     <label>Productos</label>
                     <div class="input-group">
@@ -83,13 +88,14 @@
                         <input type="text" class="form-control" placeholder="Empresa" name="empresap" id="empresap" value="<?php echo $consulta[7];?>" class="rounded-3"/>
                     </div>
                 </div>
+               
                 <div class="col-md-12"><br>
                     <button type="submit" class="btn btn-primary" name="editarpro" value="editarpro">Editar proveedor</button>
                     <a href="proveedores.php"><button type="button" class="btn btn-warning">Cancelar</button></a>
                 </div>
             </div>
         </fieldset>
-    </form>
+    </form><br>
 </div>
 </center>
             

@@ -1,5 +1,5 @@
 <?php 
-include("usuario_menu.php");
+include("admin_menu.php");
 ?>
 <!doctype html>
 <html lang="es">
@@ -10,7 +10,34 @@ include("usuario_menu.php");
     <!--Inicia Formulario-->
     <div class="container">
         <center>
-            
+            <?php
+
+                //Eliminacion de un registro
+            $servidor = "localhost";
+            $nombreusuario = "root";
+            $password = "";
+            $db = "soltech";
+        
+            $conect = new mysqli($servidor, $nombreusuario, $password, $db);
+        
+            if($conect->connect_error){
+                die("Conexión fallida: " . $conect->connect_error);
+            }
+            //metodo de eliminar
+            if(isset($_REQUEST['eliminar'])){
+                
+                $id = $_REQUEST['eliminar'];
+                $sql = "DELETE FROM proveedores WHERE id = $id";
+
+                if($conect->query($sql) === true){
+                    echo "<br><div class='alert alert-success' role='alert'>
+                            El registro se ha eliminado correctamente.
+                        </div>";
+                }else{
+                    die("Error al eliminar el dato: " . $conect->error);
+                }
+            }
+            ?>
     <form id="BPForm" class="rounded-3 form_search">
         <div class="row">
             <div class="col-md-6">
@@ -18,8 +45,8 @@ include("usuario_menu.php");
                 <a href="ifproveedor.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
             </div>
             <div class="col-md-6">
-                <label>Ver tabla completa:</label>
-                <a href="proveedores_mas.php"><button style="background-color:#d0a9eb;" class="btn"type="button"><i class="fas fa-table"></i></button></a>
+                <label>Ver resumen de tabla:</label>
+                <a href="proveedores.php"><button style="background-color:#d0a9eb;" class="btn" type="button"><i class="fas fa-table"></i></button></a>
             </div>
         </div>
     </form>
@@ -36,9 +63,13 @@ include("usuario_menu.php");
                                 <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Telefono</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Correo</th>
                                 <th scope="col">RFC</th>
                                 <th scope="col">Productos</th>
                                 <th scope="col">Empresa</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,9 +90,18 @@ include("usuario_menu.php");
                                         <th> <?php echo $row['id']; ?></th>
                                         <td> <?php echo $row['nombrep']; ?></td>
                                         <td> <?php echo $row['telefonop']; ?></td>
+                                        <td> <?php echo $row['direccionp']; ?></td>
+                                        <td> <?php echo $row['correop']; ?></td>
                                         <td> <?php echo $row['rfcp']; ?></td>
                                         <td> <?php echo $row['productosp']; ?></td>
                                         <td> <?php echo $row['empresap']; ?></td>
+                                        <td> <?php echo $row['fechap']; ?></td>
+                                        <td> <div class="tdbutton"> <?php echo
+                                            "<a href='formprovmod.php?id=".$row['id']."'><button type='button' class='btn btn-sm btn-warning btntd'><i class='fas fa-edit'></i></button></a>" ?>
+                                            <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="proveedores.php">
+                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-sm btn-danger eliminar btntd"><i class="fas fa-trash"></i></button>
+                                        </form></div>
+                                        </td>
                                     </tr>
                             <?php } mysqli_free_result($resultado); ?>
                         </tbody>
@@ -69,13 +109,29 @@ include("usuario_menu.php");
                 </div>
             </form>
         </div>
+        <script>
+            function confirmation (e){
+                if(confirm ("¿Estas seguro de eliminar este registro?")){
+                    return true;
+                }else{
+                    e.preventDefault();
+                }
+            }
+
+            let linkEliminar = document.querySelectorAll(".eliminar");
+
+            for(var i = 0; i < linkEliminar.length; i++){
+                linkEliminar[i].addEventListener('click', confirmation);
+            }
+        </script>
+
     </center>
     
     <!--Finaliza Formulario-->
     
     <!--Inicia Footer-->
 <?php
-    include("usuario_footer.php");
+    include("admin_footer.php");
     include("../../includes/pag_table.php");
 ?>
     <!--Finaliza Footer-->

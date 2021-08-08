@@ -11,7 +11,7 @@ $pdf->SetFont('Arial','B',12);
 $pdf->Cell(50);
 
 // Título
-$pdf->Cell(90,10,'Reporte de Ventas',0,0,'C');
+$pdf->Cell(90,10,'Reporte de clientes que requieren factura',0,0,'C');
 
 $pdf->Image('../../img/logo2.png',10,8,22);
 $pdf->Cell(27);
@@ -38,7 +38,7 @@ $pdf->SetWidths(Array(10,62,62,30,23));
 $pdf->SetLineHeight(5);
 //Nos conectamos a la base de datos y hacemos la consulta
 $mysqli = new mysqli("localhost","root","","soltech");
-$consulta = "SELECT * FROM ventasregis";
+$consulta = "SELECT * FROM ventasregis WHERE reqfac=1";
 $resultado = $mysqli -> query($consulta);
 //Cargamos los datos
 while($item = $resultado->fetch_assoc()){

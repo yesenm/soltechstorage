@@ -75,6 +75,7 @@
                             <th style="width:120px;">Cliente</th>
                             <th style="width:80px;">Fecha</th>
                             <th style="width:50px;">Monto</th>
+                            <th style="width:50px;">Factura</th>
                             <th style="width:50px;">Opciones</th>
                         </tr>
                     </thead>
@@ -92,6 +93,14 @@
                                 <td> <?php echo $row['cliente']; ?></td>
                                 <td> <?php echo $row['order_date']; ?></td>
                                 <td>$ <?php echo $row['total']; ?></td>
+                                <td> <?php 
+                                if($row['reqfac'] == 0){
+                                    echo "No";
+                                }else{
+                                    echo "Si";
+                                }
+                                ?>
+                                </td>
                                 <td><div class="tdbutton">
                                     <a href="../../includes/pdf/pdffactura.php?id=<?php echo $row['invoice_id']; ?>" target="_blank" class="btn btn-info btntd btn-sm"><i class="fa fa-print"></i></a>
                                     <form method="POST" id="form_eliminar_<?php echo $row['invoice_id']; ?>" action="ventasreg.php">

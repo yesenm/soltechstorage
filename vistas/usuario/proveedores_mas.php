@@ -12,14 +12,14 @@ include("usuario_menu.php");
         <center>
             
     <form id="BPForm" class="rounded-3 form_search">
-        <div class="row">
+    <div class="row">
             <div class="col-md-6">
                 <label>Registra un proveedor:</label>
                 <a href="ifproveedor.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
             </div>
             <div class="col-md-6">
-                <label>Ver tabla completa:</label>
-                <a href="proveedores_mas.php"><button style="background-color:#d0a9eb;" class="btn"type="button"><i class="fas fa-table"></i></button></a>
+                <label>Ver resumen de tabla:</label>
+                <a href="proveedores.php"><button style="background-color:#d0a9eb;" class="btn"type="button"><i class="fas fa-table"></i></button></a>
             </div>
         </div>
     </form>
@@ -36,9 +36,12 @@ include("usuario_menu.php");
                                 <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Telefono</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Correo</th>
                                 <th scope="col">RFC</th>
                                 <th scope="col">Productos</th>
                                 <th scope="col">Empresa</th>
+                                <th scope="col">Fecha</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,9 +62,12 @@ include("usuario_menu.php");
                                         <th> <?php echo $row['id']; ?></th>
                                         <td> <?php echo $row['nombrep']; ?></td>
                                         <td> <?php echo $row['telefonop']; ?></td>
+                                        <td> <?php echo $row['direccionp']; ?></td>
+                                        <td> <?php echo $row['correop']; ?></td>
                                         <td> <?php echo $row['rfcp']; ?></td>
                                         <td> <?php echo $row['productosp']; ?></td>
                                         <td> <?php echo $row['empresap']; ?></td>
+                                        <td> <?php echo $row['fechap']; ?></td>
                                     </tr>
                             <?php } mysqli_free_result($resultado); ?>
                         </tbody>

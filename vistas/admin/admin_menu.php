@@ -74,6 +74,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #7ad2ae;">
                             <li><a class="dropdown-item" href="ventas.php">Ventas</a></li>
                             <li><a class="dropdown-item" href="ventasreg.php">Ventas registradas</a></li>
+                            <li><a class="dropdown-item" href="facturas.php">Facturas</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

@@ -1,5 +1,5 @@
 <?php 
-include("admin_menu.php");
+include("usuario_menu.php");
 ?>
 <!doctype html>
 <html lang="es">
@@ -8,46 +8,17 @@ include("admin_menu.php");
     <!--Inicia Formulario-->
     <div class="container">
         <center>
-
-        <?php
-            //Eliminacion de un registro
-            $servidor = "localhost";
-            $nombreusuario = "root";
-            $password = "";
-            $db = "soltech";
-        
-            $conect = new mysqli($servidor, $nombreusuario, $password, $db);
-        
-            if($conect->connect_error){
-                die("Conexión fallida: " . $conect->connect_error);
-            }
-            //metodo de eliminar
-            if(isset($_REQUEST['eliminar'])){
-                
-                $id = $_REQUEST['eliminar'];
-                $sql = "DELETE FROM clientescr WHERE id = $id";
-
-                if($conect->query($sql) === true){
-                    echo "<br><div class='alert alert-success' role='alert'>
-                            El registro se ha eliminado correctamente.
-                        </div>";
-                }else{
-                    die("Error al actualizar datos: " . $conect->error);
-                }
-            }
-        ?>
-
     <form id="BPForm" class="rounded-3 form_search">
-        <div class="row">
+    <div class="row">
             <div class="col-md-6">
                 <label>Registrar un crédito:</label>
                 <a href="ifclientecr.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
             </div>
             <div class="col-md-6">
-                <label>Ver tabla completa:</label>
-                <a href="clientescr_mas.php"><button style="background-color:#d0a9eb;" class="btn" type="button"><i class="fas fa-table"></i></button></a>
+                <label>Ver resumen de tabla:</label>
+                <a href="clientescr.php"><button style="background-color:#d0a9eb;" class="btn" type="button"><i class="fas fa-table"></i></button></a>
             </div>
-        </div>
+        </div> 
     </form> 
             
         <div class="mb-3"><br>
@@ -61,10 +32,13 @@ include("admin_menu.php");
                                 <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Telefono</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">RFC</th>
                                 <th scope="col">Crédito</th>
                                 <th scope="col">Restante</th>
-                                <th scope="col">Fecha límite</th>
-                                <th scope="col">Opciones</th>
+                                <th scope="col" style="width:200px;">Fecha de préstamo</th>
+                                <th>Fecha límite</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,16 +57,13 @@ include("admin_menu.php");
                                         <th> <?php echo $row['id']; ?></th>
                                         <td> <?php echo $row['nombrecr']; ?></td>
                                         <td> <?php echo $row['telefonocr']; ?></td>
+                                        <td> <?php echo $row['direccioncr']; ?></td>
+                                        <td> <?php echo $row['correocr']; ?></td>
+                                        <td> <?php echo $row['rfccr']; ?></td>
                                         <td>$ <?php echo $row['cantidadcr']; ?></td>
                                         <td>$ <?php echo $row['restantecr']; ?></td>
+                                        <td> <?php echo $row['fechaprcr']; ?></td>
                                         <td> <?php echo $row['fechalicr']; ?></td>
-                                        <td><div class="tdbutton"> <?php echo
-                                            "<a href='formclientcrmod.php?id=".$row['id']."'><button type='button' class='btn btn-warning btn-sm btntd'><i class='fas fa-edit'></i></button></a>" ?>
-                                            <form method="POST" id="form_eliminar_<?php echo $row['id']; ?>" action="clientescr.php">
-                                            <button type="submit" name="eliminar" value="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm eliminar btntd"><i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </div>
-                                        </td>
                                         </tr>
                                     <?php } mysqli_free_result($resultado); ?>
                         </tbody>
@@ -102,27 +73,11 @@ include("admin_menu.php");
         </div>
     </div>
 </center>
-
-<script>
-    function confirmation (e){
-        if(confirm ("¿Estas seguro de eliminar este registro?")){
-            return true;
-        }else{
-            e.preventDefault();
-        }
-    }
-
-    let linkEliminar = document.querySelectorAll(".eliminar");
-
-    for(var i = 0; i < linkEliminar.length; i++){
-        linkEliminar[i].addEventListener('click', confirmation);
-    }
-</script>
 <!--Finaliza Formulario-->
 
 <!--Inicia Footer-->
 <?php
-    include("admin_footer.php");
+    include("usuario_footer.php");
     include("../../includes/pag_table.php");
 ?>
 <!--Finaliza Footer-->

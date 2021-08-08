@@ -34,17 +34,22 @@
                             <input type="text" class="form-control" placeholder="Dirección" name="direccionp" id="direccionp" value="<?php echo $direccionp;?>" class="rounded-3"/>
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-5"><br>
                         <label>Correo</label>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Correo" name="correop" id="correop" value="<?php echo $correop;?>" class="rounded-3"/>
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-5"><br>
                         <label>RFC</label>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="RFC" name="rfcp" id="rfcp" value="<?php echo $rfcp;?>" class="rounded-3"/>
                         </div>
+                    </div>
+                    <div class="col-md-2"><br>
+                        <label>Fecha</label>
+                        <input type="text" class="form-control pull-right" name="fechap" value="<?php echo date("Y-m-d");?>" readonly
+                      data-date-format="yyyy-mm-dd">
                     </div>
                     <div class="col-md-6"><br>
                         <label>Productos</label>

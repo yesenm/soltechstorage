@@ -43,8 +43,8 @@ include("admin_menu.php");
                 <a href="ifusuario.php"><button class="btn btn-primary" type="button"><i class="fas fa-user-plus"></i></button></a>
             </div>
             <div class="col-md-6">
-                <label>Ver tabla completa:</label>
-                <a href="usuarios_mas.php"><button style="background-color:#d0a9eb;" class="btn" type="button"><i class="fas fa-table"></i></button></a>
+                <label>Ver resumen de tabla:</label>
+                <a href="vendedores.php"><button style="background-color:#d0a9eb;" class="btn" type="button"><i class="fas fa-table"></i></button></a>
             </div>
         </div>
     </form>
@@ -61,6 +61,8 @@ include("admin_menu.php");
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Telefono</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Correo</th>
                             <th scope="col">RFC</th>
                             <th scope="col">Usuario</th>
                             <th scope="col">Rol</th>
@@ -85,6 +87,8 @@ include("admin_menu.php");
                             <th> <?php echo $row['id']; ?></th>
                             <td> <?php echo $row['nombrev']; ?></td>
                             <td> <?php echo $row['telefonov']; ?></td>
+                            <td> <?php echo $row['direccionv']; ?></td>
+                            <td> <?php echo $row['correov']; ?></td>
                             <td> <?php echo $row['rfcv']; ?></td>
                             <td> <?php echo $row['nameuser']; ?></td>
                             <td> <?php

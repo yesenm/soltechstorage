@@ -13,6 +13,7 @@ if(isset($_POST['save_order'])){
     $clienteev = $_POST['clienteev'];
     $clientepo = $_POST['clientepo'];
     $clientecr = $_POST['clientecr'];
+    $reqfac = $_POST['reqfac'];
     
     $arr_product_id =  $_POST['id_'];
     $arr_product_code = $_POST['codigoi_'];
@@ -34,8 +35,8 @@ if(isset($_POST['save_order'])){
             //Eventual
             if($clientepo == "" && $clientecr ==""){
                 //inserta en ventas registradas
-                $sql = ("INSERT INTO ventasregis(cashier_name, order_date, time_order, total, paid, due, cliente)
-                VALUES('$cashier_name', '$order_date', '$order_time', '$total','$paid', '$due', '$clienteev')");
+                $sql = ("INSERT INTO ventasregis(cashier_name, order_date, time_order, total, paid, due, cliente, reqfac)
+                VALUES('$cashier_name', '$order_date', '$order_time', '$total','$paid', '$due', '$clienteev', '$reqfac')");
                 
                 if(!mysqli_query($conexion,$sql)){echo "Error: ".mysqli_error($conexion);}
                 
@@ -90,8 +91,8 @@ if(isset($_POST['save_order'])){
                 if(!mysqli_query($conexion,$update)){echo"Error".mysqli_error($conexion);}
                 
                 //Insertar venta
-                $sql = ("INSERT INTO ventasregis(cashier_name, order_date, time_order, total, paid, due, cliente)
-                VALUES('$cashier_name', '$order_date', '$order_time', '$total','$paid', '$due', '$clientepo')");
+                $sql = ("INSERT INTO ventasregis(cashier_name, order_date, time_order, total, paid, due, cliente, reqfac)
+                VALUES('$cashier_name', '$order_date', '$order_time', '$total','$paid', '$due', '$clientepo', '$reqfac')");
                 
                 if(!mysqli_query($conexion,$sql)){echo "Error: ".mysqli_error($conexion);}
                 
@@ -151,8 +152,8 @@ if(isset($_POST['save_order'])){
                     if(!mysqli_query($conexion,$credito)){echo"Error".mysqli_error($conexion);}
                     
                     //inserta en ventas registradas
-                    $sql = ("INSERT INTO ventasregis(cashier_name, order_date, time_order, total, paid, due, cliente)
-                    VALUES('$cashier_name', '$order_date', '$order_time', '$total','$paid', '$due', '$clientecr')");
+                    $sql = ("INSERT INTO ventasregis(cashier_name, order_date, time_order, total, paid, due, cliente, reqfac)
+                    VALUES('$cashier_name', '$order_date', '$order_time', '$total','$paid', '$due', '$clientecr', '$reqfac')");
                     
                     if(!mysqli_query($conexion,$sql)){echo "Error: ".mysqli_error($conexion);}
                     

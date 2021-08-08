@@ -47,13 +47,20 @@ include("admin_menu.php");
                             <input type="text" class="form-control" placeholder="RFC" class="rounded-3" name="rfccr" value="<?php echo $rfccr;?>">
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-4"><br>
                         <label>Cantidad de crédito</label>
                         <div class="input-group">
                             <input type="number" min="0" class="form-control" placeholder="Cantidad de crédito" class="rounded-3" name="cantidadcr" value="<?php echo $cantidadcr;?>">
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-4"><br>
+                        <label>Fecha de préstamo</label>
+                        <div class="input-group">
+                        <input type="text" class="form-control pull-right" name="fechaprcr" value="<?php echo date("d-m-Y");?>" readonly
+                      data-date-format="yyyy-mm-dd">
+                        </div>
+                    </div>
+                    <div class="col-md-4"><br>
                         <label>Fecha límite</label>
                         <div class="input-group">
                             <input type="date" class="form-control" class="rounded-3" name="fechalicr" value="<?php echo $fechalicr;?>">

@@ -36,7 +36,7 @@ include("admin_menu.php");
     ?>
 
         <form id="BPForm" class="rounded-3 form_search">
-            <div class="row">
+        <div class="row">
                 <div class="col-md-3">
                     <label>Registra un producto:</label>
                     <a href="forminventario.php"><button class="btn btn-primary" type="button"><i class="fas fa-seedling"></i></button></a>
@@ -46,8 +46,8 @@ include("admin_menu.php");
                     <a href="../../includes/pdf/pdfinventario.php"><button class="btn btn-warning" type="button"><i class="fas fa-file-pdf"></i></button></a>
                 </div>
                 <div class="col-md-3">
-                    <label>Ver tabla completa:</label>
-                    <a href="inventario_mas.php"><button style="background-color:#d0a9eb;" class="btn" type="button"><i class="fas fa-table"></i></button></a>
+                    <label>Ver resumen de tabla:</label>
+                    <a href="inventario.php"><button style="background-color:#d0a9eb;" class="btn" type="button"><i class="fas fa-table"></i></button></a>
                 </div>
             </div>
         </form> 
@@ -66,8 +66,11 @@ include("admin_menu.php");
                             <th scope="col">Código</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Medidas</th>
+                            <th scope="col">$Mayoreo</th>
+                            <th scope="col">$Bruto</th>
                             <th scope="col">$Neto</th>
                             <th scope="col">Existencias</th>
+                            <th scope="col">Proveedor</th>
                             <th scope="col">Categoría</th>
                             <th scope="col">Opciones</th>
                         </tr>
@@ -91,8 +94,11 @@ include("admin_menu.php");
                                 <td> <?php echo $row['codigoi']; ?></td>
                                 <td> <?php echo $row['descripcioni']; ?></td>
                                 <td> <?php echo $row['medidasi']; ?></td>
+                                <td>$<?php echo $row['pmayoreoi']; ?></td>
+                                <td>$<?php echo $row['pbrutoi']; ?></td>
                                 <td>$<?php echo $row['pnetoi']; ?></td>
                                 <td> <?php echo $row['existenciasi']; ?></td>
+                                <td> <?php echo $row['proveedoresi']; ?></td>
                                 <td> <?php echo $row['categoriai']; ?></td>
                                 <td> <div class="tdbutton"><?php echo
                                     "<a href='forminventariomod.php?id=".$row['id']."'><button type='button' class='btn btn-sm btn-warning btntd'><i class='fas fa-edit'></i></button></a>" ?>

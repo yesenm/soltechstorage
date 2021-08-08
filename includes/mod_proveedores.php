@@ -12,6 +12,7 @@
             $rfc = $_POST['rfcp'];
             $productos = $_POST['productosp'];
             $empresa = $_POST['empresap'];
+            $fechap = $_POST['fechap'];
             
             $campos = array();
             
@@ -75,6 +76,7 @@
                 $correo=quitarEspacios($_POST["correop"]);
                 $rfc=quitarEspacios($_POST["rfcp"]);
                 $productos=quitarEspacios($_POST["productosp"]);
+                $fechap=quitarEspacios($_POST["fechap"]);
             }
 
             if(isset($_REQUEST['editarpro'])){ 
@@ -86,11 +88,11 @@
                     $rfc=$_REQUEST['rfcp'];
                     $productos=$_REQUEST['productosp'];
                     $empresa=$_REQUEST['empresap'];
-
+                    $fechap=$_REQUEST['fechap'];
 
     
                     $cambios ="update proveedores set nombrep ='$nombre',telefonop='$telefono', direccionp='$direccion',
-                                correop='$correo', rfcp='$rfc', productosp='$productos', empresap='$empresa' where id='$id'";
+                                correop='$correo', rfcp='$rfc', productosp='$productos', empresap='$empresa', fechap='$fechap' where id='$id'";
     
                 if(mysqli_query($conexion,$cambios)){
                     echo "<br><div class='alert alert-success' role='alert'>

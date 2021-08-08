@@ -13,6 +13,10 @@ $pdf->AddPage();
         $pdf->Cell(50);
         // Título
         $pdf->Cell(90,10,'Reporte de Gastos',0,0,'C');
+        $pdf->Image('../../img/logo2.png',10,8,22);
+        $pdf->Cell(25);
+        $pdf->SetFont('Arial','',11);
+        $pdf->Cell(40,10,date('d/m/Y'),0,0,'L');
         // Salto de línea
         $pdf->Ln(15);
         //cabecera de tabla
