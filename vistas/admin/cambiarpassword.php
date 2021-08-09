@@ -53,7 +53,7 @@ include("admin_menu.php");
                     $c_pwd=$_POST['confirmcon'];
 
                     //Confirma que no tengan menos de 8 caracteres
-                    if(strlen($old_pwd)<8 && strlen($pwd)<8 && strlen($c_pwd)<8){
+                    if(strlen($old_pwd)<8 || strlen($pwd)<8 || strlen($c_pwd)<8){
                         echo "<br><div class='alert alert-danger' role='alert'>
                                 Los campos no pueden contener menos de 8 caracteres, ni estar vacíos.
                                 </div>";
